@@ -6,14 +6,79 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
 }
 
 const {
-  title = "Eugene Hyrol | Senior Mobile & Software Engineer",
-  description = "Personal CV and portfolio of Eugene Hyrol, Senior Software Engineer specializing in iOS, Swift, and scalable mobile architectures."
+  title = "Eugene Hyrol | Senior iOS Engineer & Technical Lead",
+  description = "Personal CV and portfolio of Eugene Hyrol, Senior iOS Engineer & Technical Lead specializing in SwiftUI, modular architectures, and secure mobile applications.",
+  image = "/og-image.svg"
 } = Astro.props;
 
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteUrl = Astro.site ?? 'https://eugene.hyrol.net';
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+const socialImageURL = new URL(image, siteUrl);
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://eugene.hyrol.net/#person",
+      "name": "Eugene Hyrol",
+      "jobTitle": "Senior iOS Engineer & Technical Lead",
+      "description": description,
+      "url": "https://eugene.hyrol.net",
+      "email": "mailto:eugene.hyrol@gmail.com",
+      "image": socialImageURL.toString(),
+      "sameAs": [
+        "https://www.linkedin.com/in/eugene-hyrol/",
+        "https://github.com/jekahy"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Warsaw",
+        "addressCountry": "Poland"
+      },
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Accenture"
+      },
+      "alumniOf": [
+        {
+          "@type": "EducationalOrganization",
+          "name": "Warsaw University of Technology"
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "Uzhhorod National University"
+        }
+      ],
+      "knowsAbout": [
+        "iOS Development",
+        "Swift",
+        "SwiftUI",
+        "UIKit",
+        "Modular Architecture",
+        "Mobile Security",
+        "OWASP",
+        "3D Secure",
+        "CI/CD",
+        "Technical Leadership"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://eugene.hyrol.net/#website",
+      "url": "https://eugene.hyrol.net",
+      "name": "Eugene Hyrol | Senior iOS Engineer & Technical Lead",
+      "publisher": {
+        "@id": "https://eugene.hyrol.net/#person"
+      }
+    }
+  ]
+};
 ---
 
 <!doctype html>
@@ -24,12 +89,35 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     <link rel="icon" type="image/svg+xml" href={`${baseUrl}/favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- SEO Meta Tags -->
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
+    <meta name="title" content={title} />
     <meta name="description" content={description} />
+    <meta name="author" content="Eugene Hyrol" />
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Eugene Hyrol - Portfolio & CV" />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:image" content={socialImageURL} />
+    <meta property="og:image:alt" content="Eugene Hyrol - Senior iOS Engineer & Technical Lead" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageURL} />
+    <meta name="twitter:image:alt" content="Eugene Hyrol - Senior iOS Engineer & Technical Lead" />
+
+    <!-- Structured Data (JSON-LD) for Search Engines -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaData)} />
 
     <!-- Prevent Theme Flash -->
     <script is:inline>
