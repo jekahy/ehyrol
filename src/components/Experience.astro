@@ -7,47 +7,83 @@ const { work } = cv;
   <div class="space-y-2 mb-8">
     <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
       <span class="w-2.5 h-6 bg-blue-600 rounded-sm inline-block"></span>
-      Work Experience
+      Experience
     </h2>
     <p class="text-sm text-slate-500 dark:text-slate-400">
-      Career timeline and technical achievements.
+      9+ years of engineering leadership, mobile banking architectures, security compliance, and product delivery.
     </p>
   </div>
 
-  <div class="relative pl-6 border-l-2 border-slate-200 dark:border-slate-800 space-y-10">
+  <div class="relative pl-6 border-l-2 border-slate-200 dark:border-slate-800 space-y-12">
     {work.map((job) => (
       <div class="relative group card-print">
         <!-- Timeline Marker -->
         <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-white dark:bg-slate-950 border-2 border-blue-600 group-hover:scale-125 transition-transform"></div>
 
-        <div class="space-y-3">
-          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-            <h3 class="text-lg font-semibold text-slate-900 dark:text-white">
-              {job.position}
-            </h3>
-            <span class="inline-block text-xs font-semibold px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 w-fit">
-              {job.startDate} — {job.endDate}
-            </span>
+        <div class="space-y-4">
+          <!-- Position & Company Header -->
+          <div>
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">
+                {job.position}
+              </h3>
+              <span class="inline-block text-xs font-semibold px-2.5 py-1 rounded-md bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 w-fit">
+                {job.startDate} — {job.endDate}
+              </span>
+            </div>
+            <p class="text-sm font-semibold text-slate-700 dark:text-slate-300 mt-0.5">
+              {job.company} <span class="text-slate-400 font-normal">· {job.location}</span>
+            </p>
           </div>
-
-          <p class="text-sm font-medium text-blue-600 dark:text-blue-400">
-            {job.company}
-          </p>
 
           <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
             {job.summary}
           </p>
 
+          <!-- Nested Sub-Projects (e.g. Banking E-Commerce, AI Assistant) -->
+          {job.subProjects && (
+            <div class="space-y-4 pt-2">
+              {job.subProjects.map((sub) => (
+                <div class="p-4 rounded-lg bg-slate-100/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800/80 space-y-2">
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white">
+                      {sub.name}
+                    </h4>
+                    <span class="text-xs font-medium text-blue-600 dark:text-blue-400">
+                      {sub.role}
+                    </span>
+                  </div>
+
+                  <ul class="list-disc list-outside ml-4 space-y-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                    {sub.points.map((pt) => (
+                      <li>{pt}</li>
+                    ))}
+                  </ul>
+
+                  <div class="flex flex-wrap gap-1 pt-1">
+                    {sub.technologies.map((tech) => (
+                      <span class="px-2 py-0.5 text-[11px] rounded bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono border border-slate-200/60 dark:border-slate-700/60">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <!-- Standard Highlights -->
           {job.highlights && job.highlights.length > 0 && (
-            <ul class="list-disc list-outside ml-4 space-y-1 text-sm text-slate-600 dark:text-slate-300">
+            <ul class="list-disc list-outside ml-4 space-y-1.5 text-sm text-slate-600 dark:text-slate-300">
               {job.highlights.map((point) => (
                 <li>{point}</li>
               ))}
             </ul>
           )}
 
+          <!-- Tech stack tags -->
           {job.technologies && job.technologies.length > 0 && (
-            <div class="flex flex-wrap gap-1.5 pt-2">
+            <div class="flex flex-wrap gap-1.5 pt-1">
               {job.technologies.map((tech) => (
                 <span class="px-2 py-0.5 text-xs rounded bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 font-mono">
                   {tech}

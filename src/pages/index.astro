@@ -5,6 +5,7 @@ import Experience from '../components/Experience.astro';
 import Projects from '../components/Projects.astro';
 import Skills from '../components/Skills.astro';
 import Education from '../components/Education.astro';
+import Languages from '../components/Languages.astro';
 import Contact from '../components/Contact.astro';
 import cv from '../data/cv.json';
 
@@ -17,5 +18,12 @@ const title = `${cv.basics.name} | ${cv.basics.label}`;
   <Projects limit={2} showViewAll={true} />
   <Skills />
   <Education />
+  <Languages />
   <Contact />
+
+  {cv.gdpr && (
+    <div class="pt-8 pb-4 text-[11px] text-slate-400 dark:text-slate-500 leading-normal border-t border-slate-200/60 dark:border-slate-800/60 mt-8 card-print">
+      <p class="italic">{cv.gdpr}</p>
+    </div>
+  )}
 </BaseLayout>

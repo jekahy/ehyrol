@@ -10,25 +10,25 @@ const { education } = cv;
       Education
     </h2>
     <p class="text-sm text-slate-500 dark:text-slate-400">
-      Academic background and foundational studies.
+      Academic background in Computer Science and Information Security.
     </p>
   </div>
 
   <div class="space-y-6">
     {education.map((edu) => (
       <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 card-print">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1">
           <h3 class="text-base font-bold text-slate-900 dark:text-white">
-            {edu.area}
+            {edu.studyType} in {edu.area}
           </h3>
-          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 w-fit">
+          <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 w-fit">
             {edu.startDate} — {edu.endDate}
           </span>
         </div>
-        <p class="text-sm font-medium text-blue-600 dark:text-blue-400 mb-2">
-          {edu.studyType} · {edu.institution}
+        <p class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
+          {edu.institution} <span class="text-slate-400 font-normal">· {edu.location}</span>
         </p>
-        <p class="text-sm text-slate-600 dark:text-slate-300">
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
           {edu.description}
         </p>
       </div>
