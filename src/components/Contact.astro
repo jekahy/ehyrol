@@ -1,0 +1,35 @@
+---
+import cv from '../data/cv.json';
+const { basics } = cv;
+---
+
+<section id="contact" class="py-10 scroll-mt-20 no-print">
+  <div class="p-8 rounded-2xl bg-gradient-to-br from-blue-500/10 via-indigo-500/5 to-transparent border border-blue-200/60 dark:border-blue-900/40 text-center space-y-4">
+    <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+      Let's Connect
+    </h2>
+    <p class="text-slate-600 dark:text-slate-300 max-w-xl mx-auto text-sm sm:text-base">
+      Whether you're looking for a senior mobile architect, discussing an exciting technical project, or exploring iOS collaboration, I'd love to hear from you.
+    </p>
+    <div class="pt-2 flex flex-wrap items-center justify-center gap-3">
+      <a
+        href={`mailto:${basics.email}`}
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm shadow-md transition-all hover:scale-105"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        Send Email ({basics.email})
+      </a>
+
+      <a
+        href="https://www.linkedin.com/in/eugene-hyrol/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-800 font-medium text-sm hover:border-blue-500 transition-all"
+      >
+        Connect on LinkedIn
+      </a>
+    </div>
+  </div>
+</section>

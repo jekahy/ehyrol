@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Experience from '../components/Experience.astro';
+import Projects from '../components/Projects.astro';
+import Skills from '../components/Skills.astro';
+import Education from '../components/Education.astro';
+import Contact from '../components/Contact.astro';
+import cv from '../data/cv.json';
+
+const title = `${cv.basics.name} | ${cv.basics.label}`;
+---
+
+<BaseLayout title={title} description={cv.basics.summary}>
+  <Hero />
+  <Experience />
+  <Projects limit={2} showViewAll={true} />
+  <Skills />
+  <Education />
+  <Contact />
+</BaseLayout>

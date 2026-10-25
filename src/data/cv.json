@@ -1,0 +1,142 @@
+{
+  "basics": {
+    "name": "Eugene Hyrol",
+    "label": "Senior Mobile & Software Engineer",
+    "email": "jekahy@gmail.com",
+    "location": {
+      "city": "Remote",
+      "country": "Available Worldwide"
+    },
+    "summary": "Passionate Software Engineer specializing in high-performance mobile architectures, native iOS engineering (Swift, Objective-C), and scalable digital experiences. Committed to clean code, robust testing, and open-source contribution.",
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "jekahy",
+        "url": "https://github.com/jekahy"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "eugene-hyrol",
+        "url": "https://www.linkedin.com/in/eugene-hyrol/"
+      },
+      {
+        "network": "Email",
+        "username": "jekahy@gmail.com",
+        "url": "mailto:jekahy@gmail.com"
+      }
+    ]
+  },
+  "work": [
+    {
+      "company": "Tech Solutions & Mobile Apps",
+      "position": "Lead / Senior iOS Engineer",
+      "startDate": "2021",
+      "endDate": "Present",
+      "summary": "Leading mobile architecture and native client development across enterprise and consumer mobile applications.",
+      "highlights": [
+        "Architected scalable mobile solutions using Swift, SwiftUI, and Combine, reducing crash rates to below 0.05%.",
+        "Spearheaded modular architecture migration, cutting clean build times by 35% and accelerating feature delivery.",
+        "Implemented automated CI/CD pipelines with GitHub Actions and Fastlane for seamless App Store deployments."
+      ],
+      "technologies": ["Swift", "SwiftUI", "Combine", "Concurrency", "CI/CD", "Git"]
+    },
+    {
+      "company": "Digital Product Studio",
+      "position": "iOS Software Developer",
+      "startDate": "2018",
+      "endDate": "2021",
+      "summary": "Developed and maintained feature-rich iOS applications, network protocols, and real-time audio/data streaming services.",
+      "highlights": [
+        "Built custom low-latency networking modules utilizing UDP and audio protocols.",
+        "Collaborated closely with UX/UI designers and backend engineers to craft fluid, accessible interfaces.",
+        "Contributed performance fixes and features to core open-source iOS libraries."
+      ],
+      "technologies": ["Objective-C", "Swift", "Core Audio", "REST", "WebSockets", "UIKit"]
+    },
+    {
+      "company": "Software Development Agency",
+      "position": "Software Engineer",
+      "startDate": "2015",
+      "endDate": "2018",
+      "summary": "Developed client-side applications, integrated external APIs, and maintained code quality across multiple production releases.",
+      "highlights": [
+        "Delivered 10+ iOS applications from inception to App Store publishing.",
+        "Refactored legacy codebases towards modern design patterns (MVVM / Coordinator)."
+      ],
+      "technologies": ["iOS SDK", "Git", "CocoaPods", "Agile", "Unit Testing"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "WalkieTalkie",
+      "description": "Real-time iOS audio streaming application communicating over UDP protocols with low latency and background processing support.",
+      "highlights": [
+        "Custom audio buffer management and UDP packet streaming in Swift",
+        "Robust network reachability and background reconnection handling"
+      ],
+      "url": "https://github.com/jekahy/WalkieTalkie",
+      "github": "https://github.com/jekahy/WalkieTalkie",
+      "technologies": ["Swift", "CoreAudio", "UDP Sockets", "Networking"],
+      "featured": true
+    },
+    {
+      "name": "Data Visualization & Charting",
+      "description": "Open-source contributions and custom graphing modules improving interaction responsiveness and bug fixes in chart libraries.",
+      "highlights": [
+        "Resolved highlight state management in bar and line charts",
+        "Streamlined touch gestures and dynamic scaling for mobile screens"
+      ],
+      "url": "https://github.com/jekahy",
+      "github": "https://github.com/jekahy",
+      "technologies": ["Swift", "Objective-C", "Core Graphics"],
+      "featured": true
+    },
+    {
+      "name": "Personal Developer Portfolio & CV",
+      "description": "Lightweight, accessible, and fast personal developer hub hosted on GitHub Pages with automated CI/CD deployment.",
+      "highlights": [
+        "Subpage-ready architecture with Astro and Tailwind CSS",
+        "Dark/Light theme persistence, SEO metadata, and print-ready PDF styling"
+      ],
+      "url": "https://jekahy.github.io",
+      "github": "https://github.com/jekahy",
+      "technologies": ["Astro", "Tailwind CSS", "TypeScript", "GitHub Pages"],
+      "featured": true
+    }
+  ],
+  "skills": [
+    {
+      "category": "Languages",
+      "items": ["Swift", "Objective-C", "Ruby", "TypeScript", "HTML5", "CSS3 / Tailwind"]
+    },
+    {
+      "category": "iOS & Mobile",
+      "items": ["SwiftUI", "UIKit", "Combine", "Swift Concurrency (async/await)", "Core Data", "Core Audio", "StoreKit"]
+    },
+    {
+      "category": "Architecture & Practices",
+      "items": ["MVVM", "Clean Architecture", "Modular App Design", "Unit & UI Testing (XCTest)", "Design Patterns"]
+    },
+    {
+      "category": "Tools & DevOps",
+      "items": ["Git & GitHub", "GitHub Actions", "Fastlane", "Xcode Instruments", "CocoaPods", "SPM (Swift Package Manager)"]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University / Technical Institute",
+      "area": "Computer Science / Software Engineering",
+      "studyType": "Bachelor's / Specialist Degree",
+      "startDate": "2011",
+      "endDate": "2015",
+      "description": "Core foundation in algorithms, data structures, network protocols, and object-oriented software design."
+    }
+  ],
+  "navigation": [
+    { "name": "Overview", "href": "/" },
+    { "name": "Experience", "href": "/#experience" },
+    { "name": "Projects", "href": "/projects" },
+    { "name": "Skills", "href": "/#skills" },
+    { "name": "Contact", "href": "/#contact" }
+  ]
+}
