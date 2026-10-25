@@ -12,6 +12,8 @@ const {
   title = "Eugene Hyrol | Senior Mobile & Software Engineer",
   description = "Personal CV and portfolio of Eugene Hyrol, Senior Software Engineer specializing in iOS, Swift, and scalable mobile architectures."
 } = Astro.props;
+
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <!doctype html>
@@ -19,7 +21,7 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${baseUrl}/favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
 
     <!-- SEO Meta Tags -->

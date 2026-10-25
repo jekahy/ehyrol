@@ -81,7 +81,7 @@ const { basics } = cv;
         </button>
 
         <a
-          href="/projects"
+          href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/projects`}
           class="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400"
         >
           View Projects &rarr;

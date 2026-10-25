@@ -24,7 +24,7 @@ const displayProjects = limit ? cv.projects.slice(0, limit) : cv.projects;
 
     {showViewAll && (
       <a
-        href="/projects"
+        href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/projects`}
         class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
       >
         View all projects &rarr;
