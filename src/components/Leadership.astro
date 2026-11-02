@@ -1,0 +1,59 @@
+---
+const pillars = [
+  {
+    title: "People & Team Growth",
+    description: "Mentoring engineers across seniority levels, fostering open and blameless communication, conducting technical interviews, and cultivating high standards through thorough code reviews.",
+    icon: "users"
+  },
+  {
+    title: "Product & Agile Delivery",
+    description: "Partnering closely with Product Managers and UX Designers to translate business roadmaps into clear sprint milestones, leading Scrum ceremonies, and driving predictable, high-quality releases.",
+    icon: "target"
+  },
+  {
+    title: "Engineering Quality & Reliability",
+    description: "Balancing delivery velocity with long-term code health: modular architecture, automated testing (unit, snapshot, E2E), strict security compliance, and disciplined Root Cause Analysis (RCA) on production issues.",
+    icon: "shield"
+  }
+];
+---
+
+<section id="leadership" class="py-10 border-b border-slate-200 dark:border-slate-800 scroll-mt-20">
+  <div class="space-y-1 mb-8">
+    <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+      <span class="w-2.5 h-6 bg-blue-600 rounded-sm inline-block"></span>
+      Engineering Leadership & Delivery
+    </h2>
+    <p class="text-sm text-slate-500 dark:text-slate-400">
+      My practical approach to team mentorship, cross-functional collaboration, and software delivery.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {pillars.map((pillar) => (
+      <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2 card-print shadow-sm hover:border-slate-300 dark:hover:border-slate-700 transition-all">
+        <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          {pillar.icon === 'users' && (
+            <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          )}
+          {pillar.icon === 'target' && (
+            <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          )}
+          {pillar.icon === 'shield' && (
+            <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          )}
+          {pillar.title}
+        </h3>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+          {pillar.description}
+        </p>
+      </div>
+    ))}
+  </div>
+</section>

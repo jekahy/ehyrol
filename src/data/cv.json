@@ -1,14 +1,14 @@
 {
   "basics": {
     "name": "Eugene Hyrol",
-    "label": "Senior iOS Engineer & Technical Lead",
+    "label": "Engineering Manager & Senior iOS Engineer",
     "email": "eugene.hyrol@gmail.com",
     "website": "https://eugene.hyrol.net",
     "location": {
       "city": "Warsaw",
       "country": "Poland"
     },
-    "summary": "Senior iOS Engineer & Technical Lead with 9+ years of experience building secure, high-scale iOS applications in banking, e-commerce, and logistics. Specializing in SwiftUI with hands-on depth in UIKit, modular architectures, app security, and leading cross-functional iOS, React Native, and Flutter engineering teams. Focused on technical excellence while understanding business language.",
+    "summary": "Engineering Manager and Senior iOS Engineer with 9+ years of hands-on experience building secure, high-scale iOS applications in banking and retail. Experienced in leading multi-disciplinary squads (up to 15 FTEs across iOS, Android, Backend, QA) through full delivery lifecycles while staying hands-on with SwiftUI, UIKit, modular codebases, and app security.",
     "profiles": [
       {
         "network": "Website",
@@ -139,28 +139,28 @@
       "name": "Mobile Banking E-Commerce & 3D Secure",
       "description": "High-scale modular iOS banking application serving millions of Polish banking clients, featuring secure e-commerce, biometric authentication, and 3D Secure payments.",
       "highlights": [
-        "Modular architecture with SwiftUI, XCTest, and Snapshot screenshot regression tests",
-        "TLS pinning, jailbreak detection, and biometric authorization meeting strict banking regulations"
+        "Led a cross-functional squad of 15 FTEs (iOS, Android, Backend, QA) coordinating Scrum ceremonies, feature releases, and production incident RCA for a tier-1 Polish bank",
+        "Delivered modular SwiftUI architecture with snapshot regression tests, biometric authentication, 3D Secure, and strict OWASP security compliance"
       ],
-      "technologies": ["SwiftUI", "Swift", "Security / OWASP", "3D Secure", "Modular Architecture"],
+      "technologies": ["SwiftUI", "Swift", "Security / OWASP", "3D Secure", "Modular Architecture", "Team Leadership"],
       "featured": true
     },
     {
       "name": "E-Grocery AI Assistant Module",
       "description": "AI-powered shopping assistant integrated into a leading Polish e-grocery app, accelerating user checkout and recipe item discovery.",
       "highlights": [
-        "Architected PoC in Flutter, delivered production cross-platform module in React Native",
-        "Released to live consumer market in August 2025"
+        "Led end-to-end delivery of an AI shopping assistant with an 8-person team (3 BE, 3 FE, 2 QA), managing rollout to production release in August 2025",
+        "Guided the transition from initial Flutter PoC to production React Native module integrated into the native host app"
       ],
-      "technologies": ["React Native", "Flutter", "Azure DevOps", "AI Integration"],
+      "technologies": ["React Native", "Flutter", "Azure DevOps", "AI Integration", "Product Delivery"],
       "featured": true
     },
     {
       "name": "Atomic SwiftUI Component Library",
       "description": "Reusable UI system adhering to Atomic Design principles, enabling consistent, accessible interface design across multiple automotive and enterprise apps.",
       "highlights": [
-        "Cross-team reusable tokens, accessible typography, and theme styling",
-        "Significantly accelerated prototyping and feature development"
+        "Partnered closely with UX designers in Figma to translate design tokens into reusable code and establish shared UI conventions across apps",
+        "Designed and implemented a reusable UI component library in SwiftUI adhering to Atomic Design principles"
       ],
       "technologies": ["SwiftUI", "Atomic Design", "Figma", "Design Tokens"],
       "featured": true
@@ -169,8 +169,8 @@
       "name": "WalkieTalkie (Open Source)",
       "description": "Real-time low-latency iOS audio transmission app communicating via custom UDP socket streaming and background audio handling.",
       "highlights": [
-        "Low-latency UDP packet streaming and buffer manipulation in Swift",
-        "Automated background audio reconnection"
+        "Real-time low-latency UDP packet streaming and buffer manipulation in Swift",
+        "CoreAudio integration and automated background audio reconnection"
       ],
       "url": "https://github.com/jekahy/WalkieTalkie",
       "github": "https://github.com/jekahy/WalkieTalkie",
@@ -179,6 +179,17 @@
     }
   ],
   "skills": [
+    {
+      "category": "Team Leadership & Delivery",
+      "items": [
+        "Cross-Functional Team Leadership (up to 15 FTEs)",
+        "Agile / Scrum Ceremonies",
+        "Product & Design Collaboration",
+        "Technical Mentorship & Code Reviews",
+        "Hiring & Technical Interviews",
+        "Root Cause Analysis (RCA)"
+      ]
+    },
     {
       "category": "iOS & Core Architecture",
       "items": ["Swift", "SwiftUI", "Objective-C", "UIKit", "Modular Architecture", "REST APIs", "Combine", "RxSwift", "VIPER", "Atomic Design"]
@@ -226,6 +237,7 @@
   "navigation": [
     { "name": "Overview", "href": "/" },
     { "name": "Experience", "href": "/#experience" },
+    { "name": "Leadership", "href": "/#leadership" },
     { "name": "Projects", "href": "/projects" },
     { "name": "Skills", "href": "/#skills" },
     { "name": "Education", "href": "/#education" },
