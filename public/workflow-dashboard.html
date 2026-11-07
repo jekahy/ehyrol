@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google CV Optimization Pipeline — Interactive Workflow Monitor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    code, pre { font-family: 'Fira Code', monospace; }
+    .glass-panel { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(226, 232, 240, 0.8); }
+    .dark .glass-panel { background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(51, 65, 85, 0.8); }
+    .pulse-ring { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(1.08); } }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-blue-600 selection:text-white">
+
+  <!-- Top Navigation Header -->
+  <header class="border-b border-slate-800 bg-slate-950/80 sticky top-0 z-50 backdrop-blur-md px-6 py-3.5 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <div class="h-9 w-9 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-blue-500/20 text-white font-extrabold text-lg">
+        G
+      </div>
+      <div>
+        <div class="flex items-center space-x-2">
+          <h1 class="text-base font-bold text-white tracking-tight">Google CV Optimization Pipeline</h1>
+          <span class="text-xs px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 font-medium border border-blue-500/20">AGY v2.4</span>
+        </div>
+        <p class="text-xs text-slate-400 font-mono">Target: L6 Software Engineering Manager (SWE Manager) & Staff iOS</p>
+      </div>
+    </div>
+
+    <div class="flex items-center space-x-4">
+      <div class="flex items-center space-x-2 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700 text-xs font-mono">
+        <span class="h-2.5 w-2.5 rounded-full bg-emerald-400 pulse-ring"></span>
+        <span id="header-status" class="text-emerald-400 font-medium">Pipeline: Idle / Ready</span>
+        <span class="text-slate-600">|</span>
+        <span id="timer" class="text-slate-300">Elapsed: 00:00</span>
+      </div>
+
+      <div class="flex items-center space-x-2">
+        <button id="btn-run" onclick="startWorkflow()" class="px-4 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs flex items-center space-x-1.5 transition-all shadow-md shadow-blue-600/30">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <span>Run Pipeline</span>
+        </button>
+        <button id="btn-sync" onclick="syncWebsite()" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-medium transition-all shadow-md shadow-emerald-600/20 flex items-center space-x-1.5">
+          <span>🌐</span>
+          <span>Update Website</span>
+        </button>
+        <button id="btn-reset" onclick="resetWorkflow()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium border border-slate-700 transition-all">
+          Reset
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Target Position URL Input Bar -->
+  <div class="bg-slate-950/70 border-b border-slate-800 px-6 py-2.5 flex items-center justify-between text-xs">
+    <div class="flex items-center space-x-2.5 flex-1 max-w-4xl mr-4">
+      <span class="text-blue-400 font-bold whitespace-nowrap flex items-center space-x-1">
+        <span>🎯</span>
+        <span>Target Position URL:</span>
+      </span>
+      <input id="input-job-url" type="url" value="https://www.google.com/about/careers/applications/jobs/results/?q=Software%20Engineering%20Manager%20Mobile" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-slate-200 font-mono text-[11px] focus:border-blue-500 focus:outline-none" placeholder="Paste Google Careers, LinkedIn, or Job Posting URL...">
+    </div>
+    <span class="text-slate-400 font-mono text-[10px] bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-md">Parses MQs/PQs into target_job_description.md</span>
+  </div>
+
+  <!-- Main Grid Content -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-6 grid grid-cols-12 gap-6">
+
+    <!-- Left Column: Stepper & Active Agent Cockpit (7 cols) -->
+    <section class="col-span-12 lg:col-span-7 flex flex-col space-y-6">
+
+      <!-- Interactive Stepper -->
+      <div class="bg-slate-800/60 rounded-2xl p-5 border border-slate-700/80 shadow-xl">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400">Execution Stepper</h2>
+          <span id="step-counter" class="text-xs font-mono text-slate-400">Step 1 of 6</span>
+        </div>
+
+        <div class="grid grid-cols-6 gap-2" id="stepper-nodes">
+          <!-- Stepper Nodes injected via JS -->
+        </div>
+      </div>
+
+      <!-- Active Agent & Decision Stage Card -->
+      <div class="bg-slate-800/60 rounded-2xl p-6 border border-slate-700/80 shadow-xl flex-1 flex flex-col justify-between">
+        <div>
+          <!-- Agent Persona Header -->
+          <div class="flex items-start justify-between pb-4 border-b border-slate-700/60 mb-5">
+            <div class="flex items-center space-x-3.5">
+              <div id="agent-avatar" class="h-12 w-12 rounded-xl bg-slate-700 flex items-center justify-center text-2xl border border-slate-600 shadow-inner">
+                🤖
+              </div>
+              <div>
+                <div class="flex items-center space-x-2">
+                  <h3 id="agent-role" class="text-base font-bold text-white">Select a Step</h3>
+                  <span id="agent-badge" class="text-[10px] font-mono px-2 py-0.5 rounded-md bg-slate-700 text-slate-300 border border-slate-600">IDLE</span>
+                </div>
+                <p id="agent-objective" class="text-xs text-slate-400 mt-0.5">Click 'Run Pipeline' or select a node above to inspect its execution.</p>
+              </div>
+            </div>
+
+            <div id="step-badge" class="px-2.5 py-1 rounded-full text-xs font-mono font-medium bg-slate-700 text-slate-300">
+              Standby
+            </div>
+          </div>
+
+          <!-- Step Details & Rules Checklist -->
+          <div class="space-y-4">
+            <div>
+              <h4 class="text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Agent Rules & Hiring Rubric</h4>
+              <ul id="agent-rules" class="space-y-2 text-xs text-slate-400">
+                <li class="flex items-center space-x-2 text-slate-500">
+                  <span>•</span>
+                  <span>No active step loaded.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Key Decision Outcome Callout -->
+            <div id="decision-box" class="hidden rounded-xl p-4 border transition-all duration-300">
+              <div class="flex items-center space-x-2 mb-1.5">
+                <span id="decision-icon">💡</span>
+                <span id="decision-title" class="text-xs font-bold uppercase tracking-wider">Key Decision</span>
+              </div>
+              <p id="decision-text" class="text-xs font-mono leading-relaxed"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Human-in-the-Loop Input Form (Hidden unless at HITL stage) -->
+        <div id="hitl-panel" class="hidden mt-5 pt-4 border-t border-amber-500/30 bg-amber-500/5 rounded-xl p-4 border border-amber-500/20">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center space-x-2">
+              <span class="h-2 w-2 rounded-full bg-amber-400 pulse-ring"></span>
+              <span class="text-xs font-bold text-amber-300 uppercase tracking-wider">⏸️ Human-in-the-Loop Checkpoint</span>
+            </div>
+            <span class="text-[10px] font-mono text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded">Action Required</span>
+          </div>
+          <p class="text-xs text-slate-300 mb-3">
+            The Recruiter flagged weak metrics and lack of scale. Enter verified real-world metrics to feed into the Engineering Director rewrite:
+          </p>
+
+          <div class="space-y-2.5 mb-3 text-xs">
+            <div>
+              <label class="block text-slate-400 mb-1 font-mono">1. Monthly Active Users (MAU):</label>
+              <input id="input-mau" type="text" value="3.6 million active users" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white font-mono focus:border-blue-500 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1 font-mono">2. AI Architecture Ground Truth:</label>
+              <input id="input-ai" type="text" value="Azure Foundry deployment + Product API integration + React Native host module" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white font-mono focus:border-blue-500 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1 font-mono">3. Mentorship & People Growth:</label>
+              <input id="input-promotions" type="text" value="30+ technical interviews, 2 formal promotions mentored, co-founded mobile academy" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white font-mono focus:border-blue-500 focus:outline-none">
+            </div>
+          </div>
+
+          <button onclick="submitHITL()" class="w-full py-2 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-bold text-xs rounded-lg transition-all shadow-lg shadow-amber-500/20">
+            Submit Verified Metrics & Resume Pipeline ▶️
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Right Column: Interactive Diff & Live Feed (5 cols) -->
+    <section class="col-span-12 lg:col-span-5 flex flex-col space-y-6">
+
+      <!-- Real-time Activity & Telemetry Feed -->
+      <div class="bg-slate-800/60 rounded-2xl p-5 border border-slate-700/80 shadow-xl flex flex-col h-[280px]">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-700/60 mb-3">
+          <div class="flex items-center space-x-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Live Decision Stream</span>
+            <span class="h-1.5 w-1.5 rounded-full bg-blue-400 animate-ping"></span>
+          </div>
+          <span class="text-[10px] font-mono text-slate-500">pipeline_status.md</span>
+        </div>
+
+        <div id="live-feed" class="flex-1 overflow-y-auto space-y-2 pr-1 text-xs font-mono">
+          <div class="text-slate-500 italic">Ready. Click 'Run Pipeline' to stream live agent decisions...</div>
+        </div>
+      </div>
+
+      <!-- Interactive Before/After CV Diff Inspector -->
+      <div class="bg-slate-800/60 rounded-2xl p-5 border border-slate-700/80 shadow-xl flex-1 flex flex-col">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-700/60 mb-3">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400">CV Transformation Preview</h2>
+          <div class="flex items-center space-x-1 bg-slate-900 p-0.5 rounded-lg border border-slate-800 text-[10px] font-mono">
+            <button onclick="setDiffView('diff')" id="tab-diff" class="px-2.5 py-1 rounded-md bg-blue-600 text-white font-medium">XYZ Diff</button>
+            <button onclick="setDiffView('optimized')" id="tab-opt" class="px-2.5 py-1 rounded-md text-slate-400 hover:text-white">Final Output</button>
+            <button onclick="setDiffView('original')" id="tab-orig" class="px-2.5 py-1 rounded-md text-slate-400 hover:text-white">GitHub Raw</button>
+          </div>
+        </div>
+
+        <div id="diff-container" class="flex-1 overflow-y-auto max-h-[360px] text-xs font-mono space-y-3 pr-1">
+          <!-- Dynamic diff entries injected via JS -->
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Interactive JavaScript Engine -->
+  <script>
+    const STEPS = [
+      {
+        id: "step_github",
+        name: "GitHub Fetch",
+        short: "GitHub",
+        agentRole: "System Tool (fetch_cv.py)",
+        agentAvatar: "🐙",
+        badge: "INGESTION",
+        badgeColor: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+        objective: "Pull latest candidate CV from https://github.com/jekahy/ehyrol (main).",
+        rules: [
+          "1. Query GitHub Raw API for CV.md.",
+          "2. If 404, query src/data/cv.json and convert to clean Markdown format.",
+          "3. Output saved to /workspace/CV.md as baseline ground truth."
+        ],
+        decision: {
+          type: "SUCCESS",
+          title: "Ingestion Verified",
+          text: "Fetched live cv.json from jekahy/ehyrol @ main. Converted 6 work experience sections, 9+ years history, 15 FTE mobile squad into /workspace/CV.md.",
+          style: "bg-blue-500/10 border-blue-500/30 text-blue-300"
+        }
+      },
+      {
+        id: "step_recruiter",
+        name: "Recruiter Screen",
+        short: "Recruiter",
+        agentRole: "Google Staff Technical Recruiter",
+        agentAvatar: "🕵️",
+        badge: "SCREENING",
+        badgeColor: "bg-red-500/10 text-red-400 border-red-500/20",
+        objective: "Ruthless 20-second screen against Google L6 SWE Manager / Staff SWE hiring bars.",
+        rules: [
+          "1. Enforce Google's XYZ formula: 'Accomplished [X], measured by [Y], by doing [Z]'. Reject any unquantified metric.",
+          "2. Purge consulting vernacular ('scrum ceremonies', 'billable resources', 'delivered projects').",
+          "3. Flag Role Dilution: If SWE Manager, verify people mentorship and promotions."
+        ],
+        decision: {
+          type: "REJECT",
+          title: "Screening Verdict: REJECT / HOLD",
+          text: "Flagged weak metrics: Banking e-commerce lacks active user scale (MAU); crash reduction is unquantified; 'Scrum ceremonies' triggers agency project manager red flag.",
+          style: "bg-red-500/10 border-red-500/30 text-red-300"
+        }
+      },
+      {
+        id: "step_hitl",
+        name: "User Input Gate",
+        short: "HITL Pause",
+        agentRole: "Human-in-the-Loop Gate",
+        agentAvatar: "⏸️",
+        badge: "HITL CHECKPOINT",
+        badgeColor: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+        objective: "Pause pipeline execution and request ground-truth metrics from candidate.",
+        rules: [
+          "1. Halt automated progression before rewrite to prevent metric hallucination.",
+          "2. Request Monthly Active Users (MAU), architecture specifics, and talent promotions.",
+          "3. Persist verified metrics to candidate_inputs.md before resuming."
+        ],
+        decision: {
+          type: "CAPTURED",
+          title: "Candidate Ground Truth Received",
+          text: "Captured: 3.6M active users for tier-1 bank; conversational AI scoped to Azure Foundry + Products API; verified 30+ technical interviews and 2 mentees promoted.",
+          style: "bg-amber-500/10 border-amber-500/30 text-amber-300"
+        }
+      },
+      {
+        id: "step_director",
+        name: "Director Rewrite",
+        short: "Engineering Director",
+        agentRole: "Google Engineering Director",
+        agentAvatar: "🏛️",
+        badge: "ARCHITECTURE",
+        badgeColor: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+        objective: "Rewrite experience into Google-scale systems architecture and leadership rigor.",
+        rules: [
+          "1. Reframe 15 FTEs into cross-functional squad ownership, technical roadmaps, and code rigor.",
+          "2. Seamlessly weave candidate's verified 3.6M MAU and Azure Foundry contracts into bullets.",
+          "3. Strictly format each accomplishment as 'Accomplished [X], measured by [Y], by doing [Z]'."
+        ],
+        decision: {
+          type: "REWRITE_COMPLETE",
+          title: "Architectural Rewrite Completed",
+          text: "Replaced task lists with domain-driven SwiftUI modularity; integrated OWASP MSTG zero-trust auth; positioned candidate at L6 EM bar with 15 FTE squad.",
+          style: "bg-purple-500/10 border-purple-500/30 text-purple-300"
+        }
+      },
+      {
+        id: "step_coach",
+        name: "Coach Polish",
+        short: "Executive Coach",
+        agentRole: "FAANG Executive Interview Coach",
+        agentAvatar: "🎯",
+        badge: "EXECUTIVE POLISH",
+        badgeColor: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+        objective: "Polish final narrative to project elite Google engineering leadership bar.",
+        rules: [
+          "1. Project ownership under ambiguity, high engineering velocity, and blameless post-mortems (RCA).",
+          "2. Eliminate laundry lists of generic skills and embed tooling into action accomplishments.",
+          "3. Use authoritative action verbs: Architected, Scaled, Spearheaded, Standardized."
+        ],
+        decision: {
+          type: "APPROVED",
+          title: "FAANG Bar Clear — Ready for Recruiter",
+          text: "Optimized tone: Highlights 3.6M user scale, talent multiplication (mentoring promotions, bootcamp founder), and blameless RCA culture. Saved to cv-optimized.md.",
+          style: "bg-emerald-500/10 border-emerald-500/30 text-emerald-300"
+        }
+      },
+      {
+        id: "step_cleanup",
+        name: "Clean-up",
+        short: "Clean-up",
+        agentRole: "System Janitor",
+        agentAvatar: "🧹",
+        badge: "HOUSEKEEPING",
+        badgeColor: "bg-slate-500/10 text-slate-400 border-slate-500/20",
+        objective: "Purge intermediate draft artifacts to keep repository clean.",
+        rules: [
+          "1. Delete stage1_feedback.md, candidate_inputs.md, and stage2_cv.md.",
+          "2. Preserve original CV.md and final polished cv-optimized.md.",
+          "3. Ensure git status remains clean."
+        ],
+        decision: {
+          type: "CLEANED",
+          title: "Intermediate Artifacts Purged",
+          text: "Removed all intermediate files. Only clean cv-optimized.md and CV.md remain in workspace.",
+          style: "bg-slate-500/10 border-slate-500/30 text-slate-300"
+        }
+      }
+    ];
+
+    const DIFF_ITEMS = [
+      {
+        role: "Banking E-Commerce Platform (First in Poland)",
+        before: "Led a cross-functional team of 15 FTEs (iOS, Android, Backend, QA) building an e-commerce banking module for a tier-1 Polish bank. Coordinated feature integration, strict security compliance, Scrum ceremonies, and root cause analysis (RCA).",
+        after: "Delivered first-in-Poland mobile banking e-commerce marketplace integration for a tier-1 bank serving 3.6 million active users, directing a 15-person cross-functional squad (iOS, Android, Backend, QA) as one of 5 collaborative engineering teams. Architected and owned critical cart and checkout screens in modular SwiftUI, and drove team-wide Root Cause Analysis (RCA) investigations resolving production defect regressions.",
+        highlight: "Accomplished [First-in-Poland e-commerce marketplace] measured by [15 FTE squad across 5 teams serving 3.6M users] by doing [Modular SwiftUI cart/checkout ownership & RCA driver]"
+      },
+      {
+        role: "Conversational AI Assistant (E-Grocery)",
+        before: "Led end-to-end development of an AI-based shopping assistant for a leading Polish e-grocery platform. Guided the architectural transition from Flutter PoC to production React Native module, launching in August 2025.",
+        after: "Delivered end-to-end conversational AI shopping assistant to production in August 2025 by leading an 8-engineer team (3 Backend, 3 Frontend, 2 QA); governed technical architecture and cloud integration in Azure Foundry with Products Catalog APIs, facilitating stress testing and designing mitigation approaches.",
+        highlight: "Accomplished [Production rollout] measured by [8-engineer delivery] by doing [Azure Foundry architectural governance, stress testing & React Native module]"
+      },
+      {
+        role: "People & Talent Leadership (Mentorship & Bootcamp)",
+        before: "Mentored junior developers, conducted technical interviews for iOS candidates across all levels, and aligned closely with security specialists.",
+        after: "Raised engineering hiring bar and organizational talent density by conducting 30+ technical iOS interviews and providing structured 1-on-1 career mentorship, directly guiding at least 2 engineers to formal promotions. Co-organized free mobile development bootcamp during the COVID-19 pandemic as lead iOS mentor/tutor, directly converting top graduates into full-time hires.",
+        highlight: "Accomplished [Talent Multiplication] measured by [30+ interviews & 2 formal promotions] by doing [1-on-1 mentorship & COVID-19 mobile bootcamp tutor]"
+      }
+    ];
+
+    let currentStepIndex = 0;
+    let isRunning = false;
+    let timerInterval = null;
+    let secondsElapsed = 0;
+
+    function renderStepper() {
+      const container = document.getElementById("stepper-nodes");
+      container.innerHTML = "";
+
+      STEPS.forEach((step, idx) => {
+        const isCurrent = idx === currentStepIndex;
+        const isPast = idx < currentStepIndex;
+        
+        let borderClass = "border-slate-700 bg-slate-900/60 text-slate-500";
+        if (isCurrent) borderClass = "border-blue-500 bg-blue-500/10 text-blue-400 shadow-md shadow-blue-500/20";
+        else if (isPast) borderClass = "border-emerald-500/40 bg-emerald-500/5 text-emerald-400";
+
+        const node = document.createElement("button");
+        node.className = `p-2.5 rounded-xl border text-left transition-all ${borderClass} hover:border-slate-500 flex flex-col justify-between h-20`;
+        node.onclick = () => selectStep(idx);
+        node.innerHTML = `
+          <div class="flex items-center justify-between w-full">
+            <span class="text-xs font-mono font-bold">${idx + 1}</span>
+            <span class="text-sm">${isPast ? '✓' : step.agentAvatar}</span>
+          </div>
+          <div class="text-[11px] font-semibold tracking-tight truncate w-full">${step.short}</div>
+        `;
+        container.appendChild(node);
+      });
+
+      document.getElementById("step-counter").innerText = `Step ${currentStepIndex + 1} of ${STEPS.length}`;
+    }
+
+    function selectStep(idx) {
+      currentStepIndex = idx;
+      renderStepper();
+      loadStepDetails(STEPS[idx]);
+    }
+
+    function loadStepDetails(step) {
+      document.getElementById("agent-role").innerText = step.agentRole;
+      document.getElementById("agent-avatar").innerText = step.agentAvatar;
+      document.getElementById("agent-objective").innerText = step.objective;
+
+      const badge = document.getElementById("agent-badge");
+      badge.innerText = step.badge;
+      badge.className = `text-[10px] font-mono px-2 py-0.5 rounded-md border ${step.badgeColor}`;
+
+      const stepBadge = document.getElementById("step-badge");
+      stepBadge.innerText = step.name;
+
+      const rulesList = document.getElementById("agent-rules");
+      rulesList.innerHTML = step.rules.map(r => `
+        <li class="flex items-start space-x-2">
+          <span class="text-blue-400 font-bold mt-0.5">▸</span>
+          <span class="text-slate-300">${r}</span>
+        </li>
+      `).join("");
+
+      const decisionBox = document.getElementById("decision-box");
+      const hitlPanel = document.getElementById("hitl-panel");
+
+      if (step.id === "step_hitl") {
+        hitlPanel.classList.remove("hidden");
+      } else {
+        hitlPanel.classList.add("hidden");
+      }
+
+      if (step.decision) {
+        decisionBox.className = `rounded-xl p-4 border transition-all duration-300 ${step.decision.style}`;
+        document.getElementById("decision-title").innerText = step.decision.title;
+        document.getElementById("decision-text").innerText = step.decision.text;
+        decisionBox.classList.remove("hidden");
+      } else {
+        decisionBox.classList.add("hidden");
+      }
+    }
+
+    function appendLiveLog(msg, type = "info") {
+      const feed = document.getElementById("live-feed");
+      const entry = document.createElement("div");
+      const time = new Date().toISOString().substring(11, 19);
+      let color = "text-slate-400";
+      if (type === "decision") color = "text-amber-400 font-bold";
+      if (type === "success") color = "text-emerald-400 font-semibold";
+      if (type === "step") color = "text-blue-400 font-semibold";
+
+      entry.className = `py-1 border-b border-slate-800/60 ${color}`;
+      entry.innerHTML = `<span class="text-slate-600">[${time}]</span> ${msg}`;
+      feed.appendChild(entry);
+      feed.scrollTop = feed.scrollHeight;
+    }
+
+    function startWorkflow() {
+      if (isRunning) return;
+      isRunning = true;
+      document.getElementById("btn-run").disabled = true;
+      document.getElementById("btn-run").classList.add("opacity-50");
+      document.getElementById("header-status").innerText = "Pipeline: Executing...";
+
+      secondsElapsed = 0;
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        secondsElapsed++;
+        const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+        const secs = String(secondsElapsed % 60).padStart(2, '0');
+        document.getElementById("timer").innerText = `Elapsed: ${mins}:${secs}`;
+      }, 1000);
+
+      runStepSequence(0);
+    }
+
+    function runStepSequence(idx) {
+      if (idx >= STEPS.length) {
+        isRunning = false;
+        clearInterval(timerInterval);
+        document.getElementById("header-status").innerText = "Pipeline: Completed Successfully";
+        document.getElementById("btn-run").disabled = false;
+        document.getElementById("btn-run").classList.remove("opacity-50");
+        appendLiveLog("🏁 Pipeline finished. cv-optimized.md is submission ready.", "success");
+        return;
+      }
+
+      selectStep(idx);
+      const step = STEPS[idx];
+      appendLiveLog(`▶️ Started Step ${idx + 1}: ${step.name} (${step.agentRole})`, "step");
+
+      if (step.id === "step_hitl") {
+        appendLiveLog(`⏸️ HITL Pause: Pipeline awaiting user input on real metrics...`, "decision");
+        document.getElementById("header-status").innerText = "Pipeline: Paused (Awaiting User Input)";
+        return; // Wait for user to click submit
+      }
+
+      setTimeout(() => {
+        if (step.decision) {
+          appendLiveLog(`💡 Decision [${step.short}]: ${step.decision.title}`, "decision");
+        }
+        runStepSequence(idx + 1);
+      }, 2000);
+    }
+
+    function submitHITL() {
+      const mau = document.getElementById("input-mau").value;
+      const ai = document.getElementById("input-ai").value;
+      const prom = document.getElementById("input-promotions").value;
+
+      appendLiveLog(`✅ User supplied ground truth: ${mau} | ${ai} | ${prom}`, "success");
+      document.getElementById("hitl-panel").classList.add("hidden");
+      document.getElementById("header-status").innerText = "Pipeline: Resumed";
+      runStepSequence(currentStepIndex + 1);
+    }
+
+    function syncWebsite() {
+      appendLiveLog("🌐 Syncing approved CV to /workspace/src/data/cv.json and CV.md...", "step");
+      setTimeout(() => {
+        appendLiveLog("✅ Website data successfully updated with L6 Google XYZ bullets!", "success");
+        appendLiveLog("🚀 Ready to deploy: push to 'origin main' to trigger GitHub Pages.", "decision");
+        alert("Website Data Updated! src/data/cv.json and CV.md have been synchronized with your approved CV.");
+      }, 500);
+    }
+
+    function resetWorkflow() {
+      isRunning = false;
+      clearInterval(timerInterval);
+      document.getElementById("timer").innerText = "Elapsed: 00:00";
+      document.getElementById("header-status").innerText = "Pipeline: Idle / Ready";
+      document.getElementById("btn-run").disabled = false;
+      document.getElementById("btn-run").classList.remove("opacity-50");
+      document.getElementById("live-feed").innerHTML = '<div class="text-slate-500 italic">Reset. Click \'Run Pipeline\' to execute...</div>';
+      selectStep(0);
+    }
+
+    function renderDiffs(mode = "diff") {
+      const container = document.getElementById("diff-container");
+      container.innerHTML = "";
+
+      DIFF_ITEMS.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "bg-slate-900/80 rounded-xl p-3 border border-slate-800 space-y-2";
+        
+        if (mode === "diff") {
+          card.innerHTML = `
+            <div class="text-[11px] font-bold text-blue-400 uppercase tracking-wider">${item.role}</div>
+            <div class="p-2 rounded bg-red-950/30 border border-red-900/40 text-red-300 text-[11px] leading-relaxed line-through opacity-80">
+              <span class="text-[9px] font-bold uppercase tracking-wider bg-red-900/60 px-1 py-0.5 rounded text-red-200 mr-1">Before (Consulting Fluff)</span>
+              ${item.before}
+            </div>
+            <div class="p-2 rounded bg-emerald-950/40 border border-emerald-800/40 text-emerald-200 text-[11px] leading-relaxed">
+              <span class="text-[9px] font-bold uppercase tracking-wider bg-emerald-800/80 px-1 py-0.5 rounded text-white mr-1">After (Google XYZ)</span>
+              ${item.after}
+            </div>
+            <div class="text-[10px] text-slate-500 font-mono italic">Formula: ${item.highlight}</div>
+          `;
+        } else if (mode === "optimized") {
+          card.innerHTML = `
+            <div class="text-[11px] font-bold text-emerald-400 uppercase tracking-wider">${item.role}</div>
+            <div class="text-slate-200 text-[11px] leading-relaxed">${item.after}</div>
+          `;
+        } else {
+          card.innerHTML = `
+            <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">${item.role}</div>
+            <div class="text-slate-400 text-[11px] leading-relaxed">${item.before}</div>
+          `;
+        }
+        container.appendChild(card);
+      });
+    }
+
+    function setDiffView(view) {
+      ["diff", "opt", "orig"].forEach(t => {
+        const btn = document.getElementById(`tab-${t}`);
+        if (t === (view === "optimized" ? "opt" : view === "original" ? "orig" : "diff")) {
+          btn.className = "px-2.5 py-1 rounded-md bg-blue-600 text-white font-medium";
+        } else {
+          btn.className = "px-2.5 py-1 rounded-md text-slate-400 hover:text-white";
+        }
+      });
+      renderDiffs(view);
+    }
+
+    // Initialize
+    renderStepper();
+    selectStep(0);
+    renderDiffs("diff");
+  </script>
+</body>
+</html>

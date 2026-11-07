@@ -1,14 +1,14 @@
 {
   "basics": {
     "name": "Eugene Hyrol",
-    "label": "Engineering Manager & Senior iOS Engineer",
+    "label": "Software Engineering Manager & Mobile Systems Architect",
     "email": "eugene.hyrol@gmail.com",
     "website": "https://eugene.hyrol.net",
     "location": {
       "city": "Warsaw",
       "country": "Poland"
     },
-    "summary": "Engineering Manager and Senior iOS Engineer with 9+ years of hands-on experience building secure, high-scale iOS applications in banking and retail. Experienced in leading multi-disciplinary squads (up to 15 FTEs across iOS, Android, Backend, QA) through full delivery lifecycles while staying hands-on with SwiftUI, UIKit, modular codebases, and app security.",
+    "summary": "Software Engineering Manager and Mobile Systems Architect with 9+ years of experience steering high-scale mobile initiatives and leading cross-functional engineering organizations in fintech and retail. Proven track record leading multi-disciplinary squads of up to 15 FTEs (iOS, Android, Backend, QA) on tier-1 mobile banking platforms serving 3.6M+ active users, and architecting secure, resilient mobile systems compliant with OWASP MSTG standards. Experienced engineering leader committed to technical rigor, developer velocity, defect root cause analysis, and developing high-performing talent through formal mentorship and structured hiring.",
     "profiles": [
       {
         "network": "Website",
@@ -36,37 +36,60 @@
     {
       "company": "Accenture",
       "location": "Warsaw, Poland",
-      "position": "Manager · Mobile Tech Lead & Senior iOS Engineer",
+      "position": "Software Engineering Manager · Mobile Tech Lead",
       "startDate": "12.2023",
       "endDate": "Present",
-      "summary": "Leading mobile initiatives across banking and retail AI applications, orchestrating multi-disciplinary engineering teams while remaining hands-on with iOS architecture.",
+      "summary": "Steering cross-functional engineering execution and mobile systems architecture for tier-1 banking institutions and retail AI modules.",
       "subProjects": [
         {
-          "name": "Mobile Banking E-Commerce Module",
+          "name": "Mobile Banking E-Commerce Platform (Tier-1 Polish Bank)",
           "role": "Senior iOS Dev / Team Lead",
-          "technologies": ["SwiftUI", "Xcode", "REST", "SnapshotTesting", "Modular Architecture", "BitBucket", "E2E Testing"],
+          "technologies": [
+            "SwiftUI",
+            "Xcode",
+            "REST",
+            "SnapshotTesting",
+            "Modular Architecture",
+            "BitBucket",
+            "E2E Testing"
+          ],
           "points": [
-            "Led a cross-functional team of 15 FTEs (iOS, Android, Backend, QA) building an e-commerce banking module for a tier-1 Polish bank.",
-            "Delivered hands-on SwiftUI architecture in a modular, multi-team codebase with unit tests, screenshot regression tests, and automated E2E suites.",
-            "Coordinated feature integration, strict security compliance, Scrum ceremonies, and root cause analysis (RCA) for production incidents."
+            "Delivered first-in-Poland mobile banking e-commerce marketplace integration for a tier-1 bank serving 3.6 million active users, directing a 15-person cross-functional squad (iOS, Android, Backend, QA) as one of 5 collaborative engineering teams.",
+            "Architected and owned critical cart and checkout screens in modular SwiftUI, establishing fault-tolerant transaction handling, clean API boundaries, and seamless cryptographic payment handoffs.",
+            "Mitigated release risk and regression escapes across distributed repositories by introducing rigorous automated verification gates, including snapshot regression testing, unit test standards, and automated end-to-end suites.",
+            "Drove team-wide Root Cause Analysis (RCA) investigations, serving as the key lead resolving production defect regressions and fortifying release stability across checkout and transaction flows."
           ]
         },
         {
-          "name": "E-Grocery AI Assistant Module",
+          "name": "Conversational AI Shopping Assistant (E-Grocery Platform)",
           "role": "Tech Lead / Architect / Project Manager",
-          "technologies": ["Flutter (PoC)", "React Native", "Azure DevOps", "AI Integration"],
+          "technologies": [
+            "Flutter (PoC)",
+            "React Native",
+            "Azure DevOps",
+            "AI Integration"
+          ],
           "points": [
-            "Led end-to-end development of an AI-based shopping assistant for a leading Polish e-grocery platform (3 backend, 3 frontend, 2 QA).",
-            "Guided the architectural transition from Flutter PoC to production React Native module, successfully launching to customers in August 2025."
+            "Delivered end-to-end conversational AI shopping assistant to production in August 2025 by leading an 8-engineer team (3 Backend, 3 Frontend, 2 QA) from architecture to production release.",
+            "Governed technical architecture and cloud integration for the conversational runtime in Azure Foundry, taking key technical decisions on data contracts with core Products Catalog APIs, facilitating stress testing, and designing proactive mitigation approaches.",
+            "De-risked client-side platform adoption by successfully migrating an exploratory Flutter PoC into an enterprise React Native module embedded cleanly inside the host e-grocery application."
           ]
         }
       ],
-      "technologies": ["SwiftUI", "iOS", "React Native", "Flutter", "Modular Architecture", "Azure DevOps", "Scrum"]
+      "technologies": [
+        "SwiftUI",
+        "iOS",
+        "React Native",
+        "Flutter",
+        "Modular Architecture",
+        "Azure DevOps",
+        "Scrum"
+      ]
     },
     {
       "company": "Accenture",
       "location": "Warsaw, Poland",
-      "position": "Associate Manager · Senior iOS Developer",
+      "position": "Associate Manager · Senior Mobile Engineer",
       "startDate": "06.2021",
       "endDate": "12.2023",
       "summary": "Led mobile security audits and enterprise UI component engineering for automotive and financial clients.",
@@ -75,7 +98,23 @@
         "Designed and implemented a reusable UI Component Library in SwiftUI adhering to Atomic Design principles.",
         "Mentored junior developers, conducted technical interviews for iOS candidates across all levels, and aligned closely with security specialists."
       ],
-      "technologies": ["Swift", "SwiftUI", "Objective-C", "UIKit", "Storyboards", "Keychain Security", "Atomic Design", "Figma", "Git"]
+      "technologies": [
+        "Swift",
+        "SwiftUI",
+        "Objective-C",
+        "UIKit",
+        "Storyboards",
+        "Keychain Security",
+        "Atomic Design",
+        "Figma",
+        "Git"
+      ],
+      "points": [
+        "Hardened mobile security defenses against zero-day and MITM threats across automotive and banking applications by remediating 40+ static/dynamic vulnerabilities, enforcing encrypted iOS Keychain persistence, and aligning with OWASP MSTG standards.",
+        "Standardized UI velocity and design-engineering parity by architecting an enterprise-grade SwiftUI Component Library grounded in Atomic Design principles in tight alignment with UX design teams.",
+        "Raised engineering hiring bar and organizational talent density by conducting 30+ technical iOS interviews and providing structured 1-on-1 career mentorship, directly guiding at least 2 engineers to formal promotions.",
+        "Expanded regional talent pipelines during the COVID-19 pandemic by co-organizing a free community mobile development training bootcamp, serving as lead iOS mentor, tutor, and presenter, and directly converting top graduates into full-time engineering hires."
+      ]
     },
     {
       "company": "Accenture",
@@ -90,7 +129,25 @@
         "Designed and coordinated greenfield architecture for a new mobile banking app targeting a fresh customer demographic.",
         "Conducted root cause analysis (RCA) for production defects, boosting crash-free session rates."
       ],
-      "technologies": ["Swift", "Objective-C", "VIPER", "RxSwift", "3D Secure", "Biometrics", "CocoaPods", "Jenkins", "Fastlane", "xcodegen", "Firebase"]
+      "technologies": [
+        "Swift",
+        "Objective-C",
+        "VIPER",
+        "RxSwift",
+        "3D Secure",
+        "Biometrics",
+        "CocoaPods",
+        "Jenkins",
+        "Fastlane",
+        "xcodegen",
+        "Firebase"
+      ],
+      "points": [
+        "Steered team of 5 iOS engineers through feature delivery, establishing peer review standards, clean architecture practices, and technical roadmaps.",
+        "Enforced banking regulatory payment compliance by architecting 3D Secure biometric and cryptographic transaction flows utilizing hardware-backed authentication.",
+        "Architected greenfield retail banking application utilizing modular VIPER and reactive data flows (RxSwift) to capture a next-generation demographic.",
+        "Elevated application production stability by driving disciplined telemetry instrumentation and Root Cause Analysis for client-side crash events."
+      ]
     },
     {
       "company": "Accenture",
@@ -104,7 +161,22 @@
         "Implemented TLS certificate pinning and jailbreak detection mechanisms conforming to OWASP mobile security standards.",
         "Mentored incoming junior iOS developers on Swift idioms and architectural patterns."
       ],
-      "technologies": ["Swift", "Objective-C", "TLS Pinning", "Jailbreak Detection", "OWASP", "xcodegen", "Alamofire", "SnapKit", "Fastlane"]
+      "technologies": [
+        "Swift",
+        "Objective-C",
+        "TLS Pinning",
+        "Jailbreak Detection",
+        "OWASP",
+        "xcodegen",
+        "Alamofire",
+        "SnapKit",
+        "Fastlane"
+      ],
+      "points": [
+        "Eliminated Git merge conflicts across multi-team codebases by automating iOS Xcode project generation with xcodegen, significantly reducing developer build friction.",
+        "Protected user communications against network tampering by engineering cryptographic TLS certificate pinning and client-side jailbreak detection algorithms compliant with OWASP Mobile standards.",
+        "Accelerated team onboarding by mentoring junior engineers in Swift concurrency, modular boundaries, and memory management best practices."
+      ]
     },
     {
       "company": "Accenture",
@@ -117,7 +189,20 @@
         "Kicked off internationalization engineering adapting a major Polish banking app to the French market.",
         "Conducted technical feasibility studies, led live client demo sessions, and partnered with DevOps to establish automated CI/CD pipelines."
       ],
-      "technologies": ["Swift", "Objective-C", "CI/CD", "Jenkins", "Push Notifications", "Alamofire", "SnapKit", "Crashlytics"]
+      "technologies": [
+        "Swift",
+        "Objective-C",
+        "CI/CD",
+        "Jenkins",
+        "Push Notifications",
+        "Alamofire",
+        "SnapKit",
+        "Crashlytics"
+      ],
+      "points": [
+        "Expanded banking footprint into international European markets by re-engineering localization engines, dynamic typography, and region-specific regulatory workflows.",
+        "Accelerated release delivery cycles by enabling and configuring automated CI/CD pipelines utilizing Jenkins and Fastlane to automate test verification and build generation."
+      ]
     },
     {
       "company": "Swan Software Solutions",
@@ -131,7 +216,14 @@
         "Engineered a real estate client app enabling live video property tours and cloud archiving using the Twilio SDK.",
         "Mentored junior team members in Objective-C, memory management, and Cocoa Touch frameworks."
       ],
-      "technologies": ["Objective-C", "Twilio SDK", "In-App Purchases", "Core Data", "Video Streaming", "REST APIs"]
+      "technologies": [
+        "Objective-C",
+        "Twilio SDK",
+        "In-App Purchases",
+        "Core Data",
+        "Video Streaming",
+        "REST APIs"
+      ]
     }
   ],
   "projects": [
@@ -142,7 +234,14 @@
         "Led a cross-functional squad of 15 FTEs (iOS, Android, Backend, QA) coordinating Scrum ceremonies, feature releases, and production incident RCA for a tier-1 Polish bank",
         "Delivered modular SwiftUI architecture with snapshot regression tests, biometric authentication, 3D Secure, and strict OWASP security compliance"
       ],
-      "technologies": ["SwiftUI", "Swift", "Security / OWASP", "3D Secure", "Modular Architecture", "Team Leadership"],
+      "technologies": [
+        "SwiftUI",
+        "Swift",
+        "Security / OWASP",
+        "3D Secure",
+        "Modular Architecture",
+        "Team Leadership"
+      ],
       "featured": true
     },
     {
@@ -152,7 +251,13 @@
         "Led end-to-end delivery of an AI shopping assistant with an 8-person team (3 BE, 3 FE, 2 QA), managing rollout to production release in August 2025",
         "Guided the transition from initial Flutter PoC to production React Native module integrated into the native host app"
       ],
-      "technologies": ["React Native", "Flutter", "Azure DevOps", "AI Integration", "Product Delivery"],
+      "technologies": [
+        "React Native",
+        "Flutter",
+        "Azure DevOps",
+        "AI Integration",
+        "Product Delivery"
+      ],
       "featured": true
     },
     {
@@ -162,7 +267,12 @@
         "Partnered closely with UX designers in Figma to translate design tokens into reusable code and establish shared UI conventions across apps",
         "Designed and implemented a reusable UI component library in SwiftUI adhering to Atomic Design principles"
       ],
-      "technologies": ["SwiftUI", "Atomic Design", "Figma", "Design Tokens"],
+      "technologies": [
+        "SwiftUI",
+        "Atomic Design",
+        "Figma",
+        "Design Tokens"
+      ],
       "featured": true
     },
     {
@@ -174,7 +284,12 @@
       ],
       "url": "https://github.com/jekahy/WalkieTalkie",
       "github": "https://github.com/jekahy/WalkieTalkie",
-      "technologies": ["Swift", "CoreAudio", "UDP Sockets", "Networking"],
+      "technologies": [
+        "Swift",
+        "CoreAudio",
+        "UDP Sockets",
+        "Networking"
+      ],
       "featured": true
     }
   ],
@@ -192,26 +307,77 @@
     },
     {
       "category": "iOS & Core Architecture",
-      "items": ["Swift", "SwiftUI", "Objective-C", "UIKit", "Modular Architecture", "REST APIs", "Combine", "RxSwift", "VIPER", "Atomic Design"]
+      "items": [
+        "Swift",
+        "SwiftUI",
+        "Objective-C",
+        "UIKit",
+        "Modular Architecture",
+        "REST APIs",
+        "Combine",
+        "RxSwift",
+        "VIPER",
+        "Atomic Design"
+      ]
     },
     {
       "category": "Security & Compliance",
-      "items": ["OWASP Mobile", "3D Secure", "TLS Pinning", "Jailbreak Detection", "Biometry (FaceID/TouchID)", "Keychain Storage", "OAuth", "Security Audits", "MITM Hardening"]
+      "items": [
+        "OWASP Mobile",
+        "3D Secure",
+        "TLS Pinning",
+        "Jailbreak Detection",
+        "Biometry (FaceID/TouchID)",
+        "Keychain Storage",
+        "OAuth",
+        "Security Audits",
+        "MITM Hardening"
+      ]
     },
     {
       "category": "Testing & Quality Assurance",
-      "items": ["Unit Testing (XCTest)", "Snapshot / Screenshot Testing", "E2E Testing", "Root Cause Analysis (RCA)", "Code Reviews", "Crashlytics"]
+      "items": [
+        "Unit Testing (XCTest)",
+        "Snapshot / Screenshot Testing",
+        "E2E Testing",
+        "Root Cause Analysis (RCA)",
+        "Code Reviews",
+        "Crashlytics"
+      ]
     },
     {
       "category": "DevOps & Tooling",
-      "items": ["GitHub", "Bitbucket", "Azure DevOps", "Jenkins", "Fastlane", "Xcode", "xcodegen", "CocoaPods", "SPM", "Figma"]
+      "items": [
+        "GitHub",
+        "Bitbucket",
+        "Azure DevOps",
+        "Jenkins",
+        "Fastlane",
+        "Xcode",
+        "xcodegen",
+        "CocoaPods",
+        "SPM",
+        "Figma"
+      ]
     }
   ],
   "languages": [
-    { "name": "Ukrainian", "level": "Native" },
-    { "name": "English", "level": "C1 (Professional Working)" },
-    { "name": "Russian", "level": "C1" },
-    { "name": "Polish", "level": "B2+" }
+    {
+      "name": "Ukrainian",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "C1 (Professional Working)"
+    },
+    {
+      "name": "Russian",
+      "level": "C1"
+    },
+    {
+      "name": "Polish",
+      "level": "B2+"
+    }
   ],
   "education": [
     {
@@ -235,12 +401,33 @@
   ],
   "gdpr": "I hereby give consent for my personal data included in my application to be processed for the purposes of the recruitment process under the Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 (GDPR).",
   "navigation": [
-    { "name": "Overview", "href": "/" },
-    { "name": "Experience", "href": "/#experience" },
-    { "name": "Leadership", "href": "/#leadership" },
-    { "name": "Projects", "href": "/projects" },
-    { "name": "Skills", "href": "/#skills" },
-    { "name": "Education", "href": "/#education" },
-    { "name": "Contact", "href": "/#contact" }
+    {
+      "name": "Overview",
+      "href": "/"
+    },
+    {
+      "name": "Experience",
+      "href": "/#experience"
+    },
+    {
+      "name": "Leadership",
+      "href": "/#leadership"
+    },
+    {
+      "name": "Projects",
+      "href": "/projects"
+    },
+    {
+      "name": "Skills",
+      "href": "/#skills"
+    },
+    {
+      "name": "Education",
+      "href": "/#education"
+    },
+    {
+      "name": "Contact",
+      "href": "/#contact"
+    }
   ]
 }
