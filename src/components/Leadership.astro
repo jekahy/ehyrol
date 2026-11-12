@@ -1,4 +1,9 @@
 ---
+import cv from '../data/cv.json';
+
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const featuredStudy = cv.caseStudies?.[0];
+
 const pillars = [
   {
     title: "People & Team Growth",
@@ -19,14 +24,23 @@ const pillars = [
 ---
 
 <section id="leadership" class="py-10 border-b border-slate-200 dark:border-slate-800 scroll-mt-20">
-  <div class="space-y-1 mb-8">
-    <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-      <span class="w-2.5 h-6 bg-blue-600 rounded-sm inline-block"></span>
-      Engineering Leadership & Delivery
-    </h2>
-    <p class="text-sm text-slate-500 dark:text-slate-400">
-      My practical approach to team mentorship, cross-functional collaboration, and software delivery.
-    </p>
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-8">
+    <div class="space-y-1">
+      <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+        <span class="w-2.5 h-6 bg-blue-600 rounded-sm inline-block"></span>
+        Engineering Leadership & Mindset
+      </h2>
+      <p class="text-sm text-slate-500 dark:text-slate-400">
+        My practical approach to team mentorship, cross-functional collaboration, and high-pressure software delivery.
+      </p>
+    </div>
+
+    <a
+      href={`${baseUrl}/challenges`}
+      class="no-print text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-1 shrink-0"
+    >
+      Read Challenges & Case Studies &rarr;
+    </a>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -56,4 +70,31 @@ const pillars = [
       </div>
     ))}
   </div>
+
+  {featuredStudy && (
+    <div class="mt-6 p-5 sm:p-6 rounded-xl bg-gradient-to-br from-blue-50/80 via-white to-slate-50 dark:from-blue-950/30 dark:via-slate-900 dark:to-slate-900 border border-blue-200/80 dark:border-blue-900/60 shadow-sm no-print">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="space-y-2 max-w-2xl">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+            Featured Leadership Case Study · Behind the CV
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">
+            {featuredStudy.title}
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            {featuredStudy.summary}
+          </p>
+        </div>
+        <div class="shrink-0">
+          <a
+            href={`${baseUrl}/challenges#${featuredStudy.id}`}
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-sm transition-all"
+          >
+            Read Full Story &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  )}
 </section>

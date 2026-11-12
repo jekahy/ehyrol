@@ -44,6 +44,7 @@
         {
           "name": "Mobile Banking E-Commerce Platform (Tier-1 Polish Bank)",
           "role": "Senior iOS Dev / Team Lead",
+          "caseStudyId": "banking-turnaround",
           "technologies": [
             "SwiftUI",
             "Xcode",
@@ -399,6 +400,70 @@
       "description": "Comprehensive foundation in network security, cryptographic protocols, data protection, and secure software development."
     }
   ],
+  "caseStudies": [
+    {
+      "id": "banking-turnaround",
+      "title": "Turning Around a Struggling Squad in a 5-Team Banking Program",
+      "subtitle": "Mobile Banking E-Commerce Marketplace · Tier-1 Polish Bank (3.6M+ Active Users)",
+      "period": "2023 – 2025",
+      "rolesWorn": [
+        "iOS Developer (IC)",
+        "Systems Architect",
+        "Engineering Manager",
+        "Scrum Master",
+        "Release & RCA Lead"
+      ],
+      "summary": "How I stepped in first as a hands-on iOS engineer to clean up a failed hire's code, supported a peer Team Lead through intense stakeholder friction, and ultimately took over a 15-person cross-functional squad—transforming the program's highest-risk team into a reliable unit that shipped smoothly to 3.6M+ users.",
+      "context": "A tier-1 Polish bank serving 3.6M+ active users was building Poland's first mobile banking e-commerce marketplace. Delivery was split across 5 parallel engineering teams: 1 internal bank squad, 2 external agency squads, and 2 squads from my company.",
+      "sections": [
+        {
+          "heading": "Walking Into the Fire (And Owning a Hiring Miss)",
+          "body": "Three months after the program kicked off, an iOS developer I had previously interviewed failed to pass the probationary period and left behind tightly coupled, unusable code that the team had to rip out completely. Although I had just been promoted to Engineering Manager, my priority was unblocking delivery—not my title. I joined the project hands-on as an individual contributor iOS developer to rewrite the broken cart and checkout modules from scratch.\n\nAt the time, the squad was led by a friend and colleague (an Associate Manager). Despite holding a more senior formal title, I never questioned his authority or split the room. I explicitly signaled to the team that he was the leader and I was there to support him—giving him quiet heads-ups and suggestions in private chat, and taking operational load off his shoulders whenever he asked. When escalating tensions between him, internal leadership, and the bank's Steering Committee eventually led to his departure six months later, I stepped in to take over full leadership of the 15-person squad (iOS, Android, Backend, QA)."
+        },
+        {
+          "heading": "The Reality Check: Stabilizing the Program's Highest-Risk Squad",
+          "body": "Among the 5 teams on the program, the squad I inherited was struggling the most with the bank's complex processes, cross-team dependencies, and ultra-high time pressure. We were consistently behind schedule, inadvertently causing blockers for neighboring teams, generating production incidents, and struggling with deployment and release governance.\n\nTo keep delivery moving and protect the team while we rebuilt our foundation, I absorbed the initial shockwave—often putting in 10+ hour days and weekends—while systematically overhauling how we worked across four fronts:"
+        }
+      ],
+      "interventions": [
+        {
+          "title": "1. Translating Ambiguity into Blueprints (Product & Architecture)",
+          "detail": "In a fast-moving, multi-vendor environment, vague requirements quickly turn into integration failures. I joined the Product Owner directly in business meetings, rewrote and refined user stories with concrete technical bounds, confirmed data architecture and API contracts with external vendors, and drew detailed sequence diagrams for the team. Bringing engineering into business discussions also helped stakeholders understand our architectural limitations and realistic SDLC constraints."
+        },
+        {
+          "title": "2. High-Bandwidth Alignment & Empowering Sub-Leads",
+          "detail": "To eliminate information lag across iOS, Android, Backend, and QA, I initiated short ad-hoc alignment calls whenever scope shifted, broadcast all contract and requirement updates immediately on internal chat, and prepared mock data payloads so QA testers could verify edge cases early. I also included my sub-team leads in all critical stakeholder email threads so they had full context and shared ownership."
+        },
+        {
+          "title": "3. Out-Executing on Rigor & Radical Transparency with the Bank",
+          "detail": "Other bank and vendor teams were initially much more seasoned in the bank's internal craft and release machinery. Instead of being defensive, I dug deep into the bank's internal documentation, held open-minded calls with release managers, and prepared Root Cause Analyses (RCAs) and improvement plans that were even more thorough than the bank's own teams produced. In Steering Committee meetings, I openly communicated risks and refused to overpromise—rebuilding credibility step by step."
+        },
+        {
+          "title": "4. Automated Quality Guardrails & People Management",
+          "detail": "While acting simultaneously as Scrum Master, Tech Lead, and Engineering Manager (running performance reviews and 1-on-1s), we fortified our modular SwiftUI and backend pipelines with snapshot regression testing, unit test gates, and automated E2E suites to catch regressions before release coordination."
+        }
+      ],
+      "outcome": "After months of relentless execution and process stabilization, the project went live smoothly to 3.6M+ users. We completed the post-launch hypercare phase with high stability and executed a clean handover.",
+      "takeaways": [
+        {
+          "principle": "Own your hiring decisions all the way to production",
+          "explanation": "When a candidate I interviewed didn't work out during probation, stepping in as an IC to clean up the codebase myself was the right thing to do—and permanently sharpened how I evaluate practical code quality in interviews."
+        },
+        {
+          "principle": "Support peers privately, align publicly",
+          "explanation": "Joining a team led by a peer while holding a higher title requires zero ego. Backing the existing lead publicly while helping privately preserves team psychological safety during turbulent transitions."
+        },
+        {
+          "principle": "Clarity beats pressure",
+          "explanation": "When a team is behind schedule, pushing harder doesn't work—giving them sequence diagrams, refined user stories, vendor API contracts, and QA mocks removes the friction that causes mistakes."
+        },
+        {
+          "principle": "Never overpromise to a Steering Committee",
+          "explanation": "With senior bank stakeholders and release managers, thorough RCAs, deep preparation, and honest risk forecasting rebuild trust far faster than optimistic status reports."
+        }
+      ]
+    }
+  ],
   "gdpr": "I hereby give consent for my personal data included in my application to be processed for the purposes of the recruitment process under the Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 (GDPR).",
   "navigation": [
     {
@@ -412,6 +477,10 @@
     {
       "name": "Leadership",
       "href": "/#leadership"
+    },
+    {
+      "name": "Challenges & Mindset",
+      "href": "/challenges"
     },
     {
       "name": "Projects",
