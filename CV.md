@@ -1,7 +1,6 @@
 # Eugene Hyrol
 **Software Engineering Manager & Mobile Systems Architect**  
-Warsaw, Poland · [eugene.hyrol@gmail.com](mailto:eugene.hyrol@gmail.com) · [eugene.hyrol.net](https://eugene.hyrol.net)  
-[LinkedIn](https://www.linkedin.com/in/eugene-hyrol/) · [GitHub](https://github.com/jekahy)
+Warsaw, Poland · [eugene.hyrol.net](https://eugene.hyrol.net) · [LinkedIn](https://www.linkedin.com/in/eugene-hyrol/) · [GitHub](https://github.com/jekahy)
 
 ---
 

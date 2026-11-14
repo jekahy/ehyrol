@@ -2,7 +2,6 @@
   "basics": {
     "name": "Eugene Hyrol",
     "label": "Software Engineering Manager & Mobile Systems Architect",
-    "email": "eugene.hyrol@gmail.com",
     "website": "https://eugene.hyrol.net",
     "location": {
       "city": "Warsaw",
@@ -24,11 +23,6 @@
         "network": "GitHub",
         "username": "jekahy",
         "url": "https://github.com/jekahy"
-      },
-      {
-        "network": "Email",
-        "username": "eugene.hyrol@gmail.com",
-        "url": "mailto:eugene.hyrol@gmail.com"
       }
     ]
   },
