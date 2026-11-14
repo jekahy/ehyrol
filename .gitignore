@@ -17,3 +17,11 @@ yarn-error.log*
 # OS Files
 .DS_Store
 Thumbs.db
+
+# Local scratch & internal files
+workflow-dashboard.html
+public/workflow-dashboard.html
+pipeline_status.md
+target_job_description.md
+cv-optimized.md
+Screenshot*.png

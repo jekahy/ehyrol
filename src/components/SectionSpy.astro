@@ -1,0 +1,134 @@
+---
+const sections = [
+  { id: 'overview', num: '01', label: 'Overview' },
+  { id: 'experience', num: '02', label: 'Experience' },
+  { id: 'leadership', num: '03', label: 'Leadership' },
+  { id: 'projects', num: '04', label: 'Projects' },
+  { id: 'skills', num: '05', label: 'Skills' },
+  { id: 'education', num: '06', label: 'Education' },
+  { id: 'contact', num: '07', label: 'Contact' },
+];
+---
+
+<!-- Desktop Interactive Side Section Tracker (Compact on xl, full labels on 2xl or hover) -->
+<aside
+  aria-label="Section progress navigation"
+  class="hidden xl:flex fixed left-4 2xl:left-6 top-1/2 -translate-y-1/2 z-40 flex-col gap-4 no-print"
+>
+  <!-- Interactive Section Rail -->
+  <nav class="group/rail p-1.5 2xl:p-2 rounded-2xl bg-white/80 dark:bg-slate-900/75 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800/80 shadow-md flex flex-col gap-1 transition-all duration-200">
+    {sections.map((sec, idx) => (
+      <a
+        href={`#${sec.id}`}
+        data-spy-link={sec.id}
+        data-spy-num={sec.num}
+        data-spy-label={sec.label}
+        title={sec.label}
+        class={`group flex items-center gap-2 px-2 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 ${
+          idx === 0
+            ? 'bg-blue-50 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 font-bold'
+            : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-slate-800/50'
+        }`}
+      >
+        <span
+          data-spy-dot={sec.id}
+          class={`w-1.5 h-1.5 rounded-full shrink-0 transition-all duration-200 ${
+            idx === 0
+              ? 'bg-blue-600 dark:bg-blue-400 scale-125'
+              : 'bg-slate-300 dark:bg-slate-700 group-hover:bg-blue-400'
+          }`}
+        ></span>
+        <span class="font-mono text-[10px] opacity-70">{sec.num}</span>
+        <span class="hidden group-hover/rail:inline 2xl:inline whitespace-nowrap pr-1">{sec.label}</span>
+      </a>
+    ))}
+  </nav>
+</aside>
+
+<!-- Compact Floating Section Pill for smaller screens (< xl) -->
+<div
+  class="xl:hidden fixed bottom-5 right-5 z-40 no-print pointer-events-none"
+>
+  <div class="pointer-events-auto inline-flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200 dark:border-slate-700/80 shadow-xl">
+    <span class="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400"></span>
+    <span id="spy-mobile-num" class="text-[11px] font-mono font-bold text-blue-600 dark:text-blue-400">01</span>
+    <span id="spy-mobile-title" class="text-xs font-bold text-slate-900 dark:text-white">Overview</span>
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    const links = Array.from(document.querySelectorAll('[data-spy-link]'));
+    const activeNumEl = document.getElementById('spy-active-num');
+    const activeTitleEl = document.getElementById('spy-active-title');
+    const mobileNumEl = document.getElementById('spy-mobile-num');
+    const mobileTitleEl = document.getElementById('spy-mobile-title');
+    const progressBarEl = document.getElementById('spy-progress-bar');
+
+    const sectionIds = links.map((l) => l.getAttribute('data-spy-link'));
+    const total = sectionIds.length;
+
+    function setActiveSection(activeId) {
+      links.forEach((link) => {
+        const id = link.getAttribute('data-spy-link');
+        const num = link.getAttribute('data-spy-num');
+        const label = link.getAttribute('data-spy-label');
+        const dot = document.querySelector(`[data-spy-dot="${id}"]`);
+        const isCurrent = id === activeId;
+
+        if (isCurrent) {
+          link.classList.add('bg-blue-50', 'dark:bg-blue-950/70', 'text-blue-600', 'dark:text-blue-400', 'font-bold');
+          link.classList.remove('text-slate-500', 'dark:text-slate-400');
+          if (dot) {
+            dot.classList.add('bg-blue-600', 'dark:bg-blue-400', 'scale-125');
+            dot.classList.remove('bg-slate-300', 'dark:bg-slate-700');
+          }
+          if (activeNumEl) activeNumEl.textContent = `${num} / 0${total}`;
+          if (activeTitleEl) activeTitleEl.textContent = label;
+          if (mobileNumEl) mobileNumEl.textContent = num;
+          if (mobileTitleEl) mobileTitleEl.textContent = label;
+        } else {
+          link.classList.remove('bg-blue-50', 'dark:bg-blue-950/70', 'text-blue-600', 'dark:text-blue-400', 'font-bold');
+          link.classList.add('text-slate-500', 'dark:text-slate-400');
+          if (dot) {
+            dot.classList.remove('bg-blue-600', 'dark:bg-blue-400', 'scale-125');
+            dot.classList.add('bg-slate-300', 'dark:bg-slate-700');
+          }
+        }
+      });
+    }
+
+    function onScroll() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? Math.min(100, Math.max(8, (scrollTop / docHeight) * 100)) : 14;
+      if (progressBarEl) {
+        progressBarEl.style.width = `${scrollPercent}%`;
+      }
+
+      // Determine active section by viewport offset
+      const triggerLine = window.innerHeight * 0.32;
+      let currentId = sectionIds[0];
+
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= triggerLine) {
+            currentId = id;
+          }
+        }
+      }
+
+      // If scrolled near the bottom of the page, activate last section
+      if (window.innerHeight + scrollTop >= document.documentElement.scrollHeight - 40) {
+        currentId = sectionIds[sectionIds.length - 1];
+      }
+
+      setActiveSection(currentId);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>

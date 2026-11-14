@@ -119,29 +119,32 @@ const schemaData = {
     <!-- Structured Data (JSON-LD) for Search Engines -->
     <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaData)} />
 
-    <!-- Prevent Theme Flash -->
+    <!-- Theme Initialization: default to dark -->
     <script is:inline>
       const theme = (() => {
         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
           return localStorage.getItem('theme');
         }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark';
-        }
-        return 'light';
+        return 'dark';
       })();
 
-      if (theme === 'light') {
-        document.documentElement.classList.remove('dark');
-      } else {
+      if (theme === 'dark') {
         document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
       }
       window.localStorage.setItem('theme', theme);
     </script>
   </head>
-  <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-200">
+  <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-300 relative overflow-x-hidden antialiased">
+    <!-- Ambient modern background glow (Linear/Stripe style) -->
+    <div class="pointer-events-none fixed inset-0 -z-10 flex justify-center overflow-hidden">
+      <div class="w-[1000px] h-[500px] bg-gradient-to-tr from-blue-500/15 via-indigo-500/10 to-purple-500/10 dark:from-blue-600/20 dark:via-indigo-600/15 dark:to-purple-600/10 blur-[120px] rounded-full opacity-70 dark:opacity-60 transform -translate-y-1/2"></div>
+      <div class="absolute top-[600px] right-0 w-[500px] h-[400px] bg-blue-400/10 dark:bg-blue-500/10 blur-[140px] rounded-full opacity-50 dark:opacity-40"></div>
+    </div>
+
     <Navbar />
-    <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative">
       <slot />
     </main>
     <Footer />

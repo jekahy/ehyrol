@@ -1,4 +1,9 @@
 ---
+import cv from '../data/cv.json';
+
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const featuredStudy = cv.caseStudies?.[0];
+
 const pillars = [
   {
     title: "People & Team Growth",
@@ -19,41 +24,83 @@ const pillars = [
 ---
 
 <section id="leadership" class="py-10 border-b border-slate-200 dark:border-slate-800 scroll-mt-20">
-  <div class="space-y-1 mb-8">
-    <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-      <span class="w-2.5 h-6 bg-blue-600 rounded-sm inline-block"></span>
-      Engineering Leadership & Delivery
-    </h2>
-    <p class="text-sm text-slate-500 dark:text-slate-400">
-      My practical approach to team mentorship, cross-functional collaboration, and software delivery.
-    </p>
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-8">
+    <div class="space-y-1">
+      <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2.5">
+        <span class="w-2.5 h-6 bg-gradient-to-b from-blue-500 to-indigo-600 rounded-sm inline-block shadow-sm shadow-blue-500/50"></span>
+        Engineering Leadership & Operating Principles
+      </h2>
+      <p class="text-sm text-slate-600 dark:text-slate-400">
+        My practical approach to team mentorship, cross-functional collaboration, and high-pressure software delivery.
+      </p>
+    </div>
+
+    <a
+      href={`${baseUrl}/challenges`}
+      class="no-print text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 hover:underline inline-flex items-center gap-1 shrink-0"
+    >
+      Read Challenges & Case Studies &rarr;
+    </a>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     {pillars.map((pillar) => (
-      <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2 card-print shadow-sm hover:border-slate-300 dark:hover:border-slate-700 transition-all">
-        <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+      <div class="glass-card p-6 space-y-2.5 card-print">
+        <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
           {pillar.icon === 'users' && (
-            <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
+            <div class="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/50 flex items-center justify-center text-blue-600 dark:text-blue-400">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
           )}
           {pillar.icon === 'target' && (
-            <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <div class="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
           )}
           {pillar.icon === 'shield' && (
-            <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
+            <div class="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/50 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
           )}
           {pillar.title}
         </h3>
-        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
           {pillar.description}
         </p>
       </div>
     ))}
   </div>
+
+  {featuredStudy && (
+    <div class="mt-8 p-6 rounded-2xl bg-gradient-to-br from-blue-50 via-white to-indigo-50/70 dark:from-blue-950/40 dark:via-slate-900/60 dark:to-indigo-950/40 border border-blue-200 dark:border-blue-500/30 shadow-md dark:shadow-lg no-print">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="space-y-2 max-w-2xl">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            <span class="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-500"></span>
+            Featured Leadership Case Study · Behind the CV
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
+            {featuredStudy.title}
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+            {featuredStudy.summary}
+          </p>
+        </div>
+        <div class="shrink-0">
+          <a
+            href={`${baseUrl}/challenges#${featuredStudy.id}`}
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-blue-600/30 transition-all hover:scale-105"
+          >
+            Read Story &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  )}
 </section>

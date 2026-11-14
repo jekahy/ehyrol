@@ -5,33 +5,41 @@ const pathname = Astro.url.pathname;
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-slate-950/80 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+<header class="sticky top-0 z-50 backdrop-blur-xl bg-white/80 dark:bg-slate-950/80 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <!-- Brand Logo / Name -->
-      <a href={import.meta.env.BASE_URL} class="flex items-center gap-2 group">
-        <span class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-sm group-hover:bg-blue-700 transition-colors">
+      <a href={import.meta.env.BASE_URL} class="flex items-center gap-2.5 group shrink-0">
+        <span class="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center font-bold text-xs shadow-md shadow-blue-500/20 group-hover:scale-105 transition-all">
           EH
         </span>
-        <span class="font-semibold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+        <span class="font-bold tracking-tight whitespace-nowrap text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
           {basics.name}
         </span>
       </a>
 
       <!-- Desktop Navigation Menu -->
-      <nav class="hidden md:flex items-center gap-1 sm:gap-2">
+      <nav class="hidden md:flex items-center gap-1.5">
         {navigation.map((item) => {
           const targetUrl = item.href.startsWith('/') ? `${baseUrl}${item.href}` : item.href;
           const isActive = pathname === targetUrl || (item.href !== '/' && pathname.startsWith(targetUrl));
+          const isChallenges = item.href === '/challenges';
           return (
             <a
               href={targetUrl}
-              class={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+              class={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-sm font-semibold whitespace-nowrap transition-all ${
                 isActive
-                  ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50'
-                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
+                  ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 border border-blue-200/80 dark:border-blue-800/50 shadow-sm'
+                  : isChallenges
+                    ? 'text-indigo-600 dark:text-indigo-300 bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200/60 dark:border-indigo-800/50 hover:bg-indigo-100/80 dark:hover:bg-indigo-900/50'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 border border-transparent'
               }`}
             >
+              {isChallenges && (
+                <svg class="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              )}
               {item.name}
             </a>
           );
@@ -39,12 +47,12 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       </nav>
 
       <!-- Action buttons (Theme Toggle & Print) -->
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-2 shrink-0">
         <!-- Print / PDF Button -->
         <button
           onclick="window.print()"
           title="Print or Save as PDF"
-          class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md transition-colors"
+          class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium whitespace-nowrap text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition-colors cursor-pointer"
         >
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4H7v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
@@ -141,4 +149,18 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       updateIcons();
     });
   }
+
+  // Ensure crisp Light Mode colors when printing/exporting PDF from Dark Mode
+  let wasDarkBeforePrint = false;
+  window.addEventListener('beforeprint', () => {
+    wasDarkBeforePrint = document.documentElement.classList.contains('dark');
+    if (wasDarkBeforePrint) {
+      document.documentElement.classList.remove('dark');
+    }
+  });
+  window.addEventListener('afterprint', () => {
+    if (wasDarkBeforePrint) {
+      document.documentElement.classList.add('dark');
+    }
+  });
 </script>

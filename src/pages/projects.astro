@@ -4,7 +4,7 @@ import Projects from '../components/Projects.astro';
 import cv from '../data/cv.json';
 
 const title = `Projects | ${cv.basics.name}`;
-const description = "Comprehensive list of open-source projects, iOS applications, and software tools by Eugene Hyrol.";
+const description = "Catalog of enterprise mobile banking systems, AI modules, iOS applications, and personal projects by Eugene Hyrol.";
 ---
 
 <BaseLayout title={title} description={description}>
@@ -22,18 +22,18 @@ const description = "Comprehensive list of open-source projects, iOS application
     <!-- Page Header -->
     <div class="pb-6 border-b border-slate-200 dark:border-slate-800">
       <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-        Projects & Open Source
+        Projects & Systems
       </h1>
       <p class="text-slate-600 dark:text-slate-300 mt-2 text-base">
-        A catalog of native mobile applications, developer libraries, audio utilities, and web experiments.
+        A catalog of enterprise mobile platforms, architecture initiatives, and native iOS applications.
       </p>
     </div>
 
     <!-- Full Projects Grid -->
-    <Projects showViewAll={false} />
+    <Projects showViewAll={false} showHeader={false} />
 
-    <!-- Open Source Note -->
-    <div class="p-6 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center space-y-3">
+    <!-- GitHub Note -->
+    <div class="glass-card p-6 text-center space-y-3">
       <h3 class="text-base font-semibold text-slate-900 dark:text-white">
         Looking for more code?
       </h3>

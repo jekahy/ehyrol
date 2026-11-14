@@ -9,7 +9,21 @@ html {
 }
 
 body {
-  @apply bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col;
+  @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col selection:bg-blue-600 selection:text-white;
+}
+
+/* Glassmorphism & Spotlight card interactions (Light & Dark) */
+.glass-card {
+  @apply bg-white/80 dark:bg-slate-900/50 backdrop-blur-xl border border-slate-200/90 dark:border-slate-800/80 rounded-2xl shadow-sm transition-all duration-300;
+}
+
+.glass-card:hover {
+  @apply border-blue-500/50 dark:border-blue-500/40 -translate-y-0.5 shadow-[0_8px_30px_rgb(0,0,0,0.06),0_0_20px_rgba(59,130,246,0.10)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.25),0_0_24px_rgba(59,130,246,0.14)];
+}
+
+/* Interactive badges (Light & Dark) */
+.tech-badge {
+  @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono font-medium rounded-lg bg-slate-100 text-slate-700 border border-slate-200/80 hover:border-blue-500/50 hover:text-blue-700 dark:bg-slate-800/70 dark:text-slate-200 dark:border-slate-700/70 dark:hover:border-blue-400/50 dark:hover:text-white transition-all duration-200;
 }
 
 /* Print-optimized styling for PDF export */

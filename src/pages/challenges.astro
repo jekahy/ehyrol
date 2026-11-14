@@ -1,0 +1,200 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import cv from '../data/cv.json';
+
+const title = `Challenges & Engineering Mindset | ${cv.basics.name}`;
+const description = "Behind-the-scenes engineering leadership case studies, faced challenges, trade-offs, and operating mindset by Eugene Hyrol.";
+const caseStudies = cv.caseStudies || [];
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="space-y-8">
+    <!-- Breadcrumb / Back Link -->
+    <div class="no-print">
+      <a href={import.meta.env.BASE_URL} class="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back to CV Overview
+      </a>
+    </div>
+
+    <!-- Page Header -->
+    <div class="pb-6 border-b border-slate-200 dark:border-slate-800 space-y-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 text-xs font-semibold">
+        Behind the CV · Real-World Execution
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Challenges, Attitude & Engineering Mindset
+      </h1>
+      <p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed max-w-3xl">
+        A standard CV only lists final outcomes. Here is the unfiltered reality of how I navigate high-pressure delivery, broken processes, stakeholder friction, and technical trade-offs as an Engineering Manager and Mobile Architect.
+      </p>
+    </div>
+
+    <!-- Case Studies List -->
+    <div class="space-y-12">
+      {caseStudies.map((study) => (
+        <article
+          id={study.id}
+          class="glass-card p-6 sm:p-8 space-y-8 scroll-mt-24 card-print"
+        >
+          <!-- Story Header -->
+          <div class="space-y-4 border-b border-slate-200/80 dark:border-slate-800 pb-6">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+                Leadership & Delivery Case Study
+              </span>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-800/50">
+                {study.period}
+              </span>
+            </div>
+
+            <div class="space-y-1">
+              <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+                {study.title}
+              </h2>
+              <p class="text-sm sm:text-base font-medium text-slate-500 dark:text-slate-400">
+                {study.subtitle}
+              </p>
+            </div>
+
+            <!-- Hats Worn -->
+            {study.rolesWorn && (
+              <div class="flex flex-wrap items-center gap-1.5 pt-1">
+                <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 mr-1">Hats worn:</span>
+                {study.rolesWorn.map((role) => (
+                  <span class="tech-badge">
+                    {role}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <!-- Executive Summary Callout -->
+            <div class="p-4 rounded-xl bg-blue-50/60 dark:bg-blue-950/30 border border-blue-200/70 dark:border-blue-800/50 text-sm text-slate-700 dark:text-slate-200 leading-relaxed">
+              <strong class="text-blue-700 dark:text-blue-300 font-bold uppercase tracking-wider text-xs mr-1.5">TL;DR:</strong>
+              {study.summary}
+            </div>
+          </div>
+
+          <!-- Numbered Story Timeline for Fast Executive Scanning -->
+          <div class="relative pl-6 border-l-2 border-slate-200 dark:border-slate-800 space-y-8">
+            <div class="relative space-y-2">
+              <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-white dark:bg-slate-950 border-2 border-blue-600 dark:border-blue-500"></div>
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400">
+                  Phase 01
+                </span>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">
+                  Project Context
+                </h3>
+              </div>
+              <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+                {study.context}
+              </p>
+            </div>
+
+            {study.sections.map((section, idx) => (
+              <div class="relative space-y-2.5">
+                <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-white dark:bg-slate-950 border-2 border-blue-600 dark:border-blue-500"></div>
+                <div class="flex items-center gap-2">
+                  <span class="text-[11px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400">
+                    Phase 0{idx + 2}
+                  </span>
+                  <h3 class="text-base font-bold text-slate-900 dark:text-white">
+                    {section.heading}
+                  </h3>
+                </div>
+                <div class="space-y-3 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+                  {section.body.split('\n\n').map((paragraph) => (
+                    <p>{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Concrete Interventions Grid -->
+          {study.interventions && (
+            <div class="space-y-4 pt-2">
+              <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <span class="w-2 h-5 bg-gradient-to-b from-blue-500 to-indigo-600 rounded-sm inline-block"></span>
+                How I Stabilized Execution & Rebuilt Trust
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {study.interventions.map((item, idx) => (
+                  <div class="p-4 rounded-xl bg-slate-50/90 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 space-y-1.5">
+                    <div class="flex items-center gap-2">
+                      <span class="text-[11px] font-mono font-bold px-1.5 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400">0{idx + 1}</span>
+                      <h4 class="text-sm font-bold text-slate-900 dark:text-white">
+                        {item.title.replace(/^\d+\.\s*/, '')}
+                      </h4>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                      {item.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Outcome Banner -->
+          <div class="p-5 rounded-xl bg-emerald-50/80 dark:bg-emerald-950/30 border border-emerald-200/90 dark:border-emerald-800/60 space-y-1.5">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300 flex items-center gap-2">
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              The Outcome
+            </h3>
+            <p class="text-sm sm:text-base text-emerald-950 dark:text-emerald-100 leading-relaxed">
+              {study.outcome}
+            </p>
+          </div>
+
+          <!-- Mindset & Operating Principles -->
+          {study.takeaways && (
+            <div class="space-y-4 pt-4 border-t border-slate-200/80 dark:border-slate-800">
+              <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <span class="w-2 h-5 bg-gradient-to-b from-blue-500 to-indigo-600 rounded-sm inline-block"></span>
+                Mindset & Leadership Principles Forged Here
+              </h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {study.takeaways.map((takeaway) => (
+                  <div class="p-4 rounded-xl bg-slate-50/60 dark:bg-slate-950/50 border border-slate-200/80 dark:border-slate-800 space-y-1.5">
+                    <p class="text-sm font-bold text-blue-600 dark:text-blue-400">
+                      “{takeaway.principle}”
+                    </p>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                      {takeaway.explanation}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </article>
+      ))}
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="p-6 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 no-print">
+      <div class="space-y-1 text-center sm:text-left">
+        <h3 class="text-base font-semibold text-slate-900 dark:text-white">
+          Want to discuss how I approach engineering leadership or architecture?
+        </h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400">
+          Happy to walk through our technical architecture, RCA practices, or team turnarounds in detail.
+        </p>
+      </div>
+      <a
+        href={`${baseUrl}/#contact`}
+        class="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-sm transition-all"
+      >
+        Get in Touch &rarr;
+      </a>
+    </div>
+  </div>
+</BaseLayout>

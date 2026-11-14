@@ -5,30 +5,32 @@ const { education } = cv;
 
 <section id="education" class="py-10 border-b border-slate-200 dark:border-slate-800 scroll-mt-20">
   <div class="space-y-1 mb-8">
-    <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-      <span class="w-2.5 h-6 bg-blue-600 rounded-sm inline-block"></span>
+    <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2.5">
+      <span class="w-2.5 h-6 bg-gradient-to-b from-blue-500 to-indigo-600 rounded-sm inline-block shadow-sm shadow-blue-500/50"></span>
       Education
     </h2>
-    <p class="text-sm text-slate-500 dark:text-slate-400">
+    <p class="text-sm text-slate-600 dark:text-slate-400">
       Academic background in Computer Science and Information Security.
     </p>
   </div>
 
-  <div class="space-y-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     {education.map((edu) => (
-      <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 card-print">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1">
-          <h3 class="text-base font-bold text-slate-900 dark:text-white">
-            {edu.studyType} in {edu.area}
-          </h3>
-          <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 w-fit">
-            {edu.startDate} — {edu.endDate}
-          </span>
+      <div class="glass-card p-6 card-print flex flex-col justify-between space-y-3">
+        <div>
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">
+              {edu.studyType} in {edu.area}
+            </h3>
+            <span class="text-xs font-semibold px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-800/50 w-fit">
+              {edu.startDate} — {edu.endDate}
+            </span>
+          </div>
+          <p class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
+            {edu.institution} <span class="text-slate-500 font-normal">· {edu.location}</span>
+          </p>
         </div>
-        <p class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
-          {edu.institution} <span class="text-slate-400 font-normal">· {edu.location}</span>
-        </p>
-        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
           {edu.description}
         </p>
       </div>
